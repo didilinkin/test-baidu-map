@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>map</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		html, body{
+			height: 100%;
+		}
+		#map{
+			width: 100%;
+			height: 100%;
+			margin: 0 auto;
+		}
+	</style>
+	<script src="http://api.map.baidu.com/api?v=2.0&ak=7NCiHPGBbVVxhPXGHCY3EvRffRuWL2BK" type="text/javascript"></script>
+</head>
+<body>
+	<div id="map"></div>
+	<script>
+		var map = new BMap.Map('map')
+
+		// 定义地图中心
+		var point = new BMap.Point(120.000, 35.881)
+		var point2 = new BMap.Point(121.000, 26.011)
+
+		// 地理坐标点
+		var bound = new BMap.Bounds(point, point2)
+		console.log(bound.toSpan(), bound.getCenter())
+
+		// 城市地点
+		var postions = new BMap.LocalCity()
+		postions.get(function(center, level, name){
+			console.log(center, level, name)
+		})
+
+		// 初始化
+		map.centerAndZoom(point, 13)
+		//map.enableScrollWheelZoom()
+	</script>
+</body>
+</html>

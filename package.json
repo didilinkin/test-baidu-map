@@ -1,0 +1,25 @@
+{
+  "name": "baidu-map",
+  "version": "1.0.0",
+  "description": "baidu-map",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "baidu-map"
+  },
+  "author": "yanxiaodi 929213769@qq.com",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-connect": "^5.0.0",
+    "gulp-livereload": "^3.8.1",
+    "gulp-sass": "^2.3.2",
+    "gulp-uglify": "^2.0.0",
+    "gulp-util": "^3.0.7",
+    "gulp-watch-path": "^0.1.0",
+    "pump": "^1.0.1"
+  }
+}
