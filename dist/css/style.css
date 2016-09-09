@@ -11,3 +11,6 @@ body, html {
 p {
   margin-left: 5px;
   font-size: 14px; }
+
+.anchorTR {
+  margin-top: 2.5rem !important; }
