@@ -1,14 +1,16 @@
-var gulp = require('gulp'), 											// gulp
-		util = require('gulp-util'), 									// gulp常用的工具库——gulp-util
-		// JS压缩
-		uglify = require('gulp-uglify'), 							// JS压缩
-		pump = require('pump'),
-		// CSS预处理任务
-		sass = require('gulp-sass'), 									// sass编译——gulp-sass
-		// 特殊任务
-		watchPath = require('gulp-watch-path'),		    // watch监控——gulp-watch-path
-		connect = require('gulp-connect'),						// gulp 服务器插件
-		livereload = require('gulp-livereload');			// 自动刷新——gulp-livereload
+var gulp = require('gulp'), 						// gulp
+	util = require('gulp-util'), 					// gulp常用的工具库——gulp-util
+	// JS压缩
+	uglify = require('gulp-uglify'), 				// JS压缩
+	pump = require('pump'),
+	concat = require('gulp-concat'),				// JS合并
+	rename = require('gulp-rename')					// 文件重命名
+	// CSS预处理任务
+	sass = require('gulp-sass'), 					// sass编译——gulp-sass
+	// 特殊任务
+	watchPath = require('gulp-watch-path'),		    // watch监控——gulp-watch-path
+	connect = require('gulp-connect'),				// gulp 服务器插件
+	livereload = require('gulp-livereload');		// 自动刷新——gulp-livereload
 
 
   // HTML
@@ -31,16 +33,15 @@ var gulp = require('gulp'), 											// gulp
 	});
 
 	// JS清理
-	gulp.task('minJs', function (cb) {
-		pump([
-					gulp.src('./src/js/*.js'),
-					uglify(),
-					gulp.dest('./dist/js')
-			],
-			cb
-		);
-		connect.reload();
-	});
+	gulp.task('minifyjs', function() {
+        return gulp.src('src/js/*.js')      	//需要操作的文件
+            .pipe(concat('main.js'))    		//合并所有js到main.js
+			.pipe(uglify())    					//压缩
+			.pipe(rename({suffix: '.min'})) 	//rename压缩后的文件名
+            .pipe(gulp.dest('dist/js'))       	//输出到文件夹
+			// 刷新页面
+			.pipe(connect.reload());
+    });
 
 	//Gulp sever服务器
 	gulp.task('connect', function() {
@@ -59,7 +60,7 @@ var gulp = require('gulp'), 											// gulp
 			// 监听HTML文件修改，当HTML文件被修改则执行 HTML 任务
 			gulp.watch('src/*.html', ['html']);
 			// 监听js文件修改，当JS文件被修改则执行 JS 任务
-			gulp.watch('src/js/*.js',['minJs']);
+			gulp.watch('src/js/*.js',['minifyjs']);
 	});
 
 	gulp.task('default', ['connect', 'watch'])
