@@ -7,6 +7,9 @@ var gulp = require('gulp'), 						// gulp
 	rename = require('gulp-rename')					// 文件重命名
 	// CSS预处理任务
 	sass = require('gulp-sass'), 					// sass编译——gulp-sass
+	// 图片压缩
+	imagemin = require('gulp-imagemin'),			// 图片压缩
+	pngquant = require('imagemin-pngquant'),		// PNG图片压缩
 	// 特殊任务
 	watchPath = require('gulp-watch-path'),		    // watch监控——gulp-watch-path
 	connect = require('gulp-connect'),				// gulp 服务器插件
@@ -35,13 +38,24 @@ var gulp = require('gulp'), 						// gulp
 	// JS清理
 	gulp.task('minifyjs', function() {
         return gulp.src('src/js/*.js')      	//需要操作的文件
-            .pipe(concat('main.js'))    		//合并所有js到main.js
+            // .pipe(concat('main.js'))    		//合并所有js到main.js
 			.pipe(uglify())    					//压缩
 			.pipe(rename({suffix: '.min'})) 	//rename压缩后的文件名
             .pipe(gulp.dest('dist/js'))       	//输出到文件夹
 			// 刷新页面
 			.pipe(connect.reload());
     });
+
+	// 图片压缩
+	gulp.task('imagemin',function(){
+		gulp.src('./src/img/*.{png,jpg,gif,ico}')
+			.pipe(imagemin({
+				progressive: true,
+				svgPlugins: [{removeViewBox: false}],
+				use: [pngquant()]
+			}))
+			.pipe(gulp.dest('./dist/img/'));
+	});
 
 	//Gulp sever服务器
 	gulp.task('connect', function() {

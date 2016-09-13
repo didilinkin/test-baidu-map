@@ -73,13 +73,18 @@ ulListControl.prototype.initialize = function(map){
     // }
     // 循环点击事件
 
-
     // 添加DOM元素到地图中
     map.getContainer().appendChild(ul);
     // 将DOM元素返回
     return ul;
 }
 
+
+// 创建自定义标识
+// var pt = new BMap.Point(120.3845,36.071702);
+// ar myIcon = new BMap.Icon("../img/pt.png", new BMap.Size(300,157));
+// var marker2 = new BMap.Marker(pt,{icon:myIcon});  // 创建标注
+// map.addOverlay(marker2);              // 将标注添加到地图中
 
 
 
@@ -100,6 +105,17 @@ var local =  new BMap.LocalSearch(map, {
 local.searchNearby('酒店',mPoint,1000);
 
 
+
+
+
+
+
+
+
+// 添加调动图标
+// var marker = new BMap.Marker(point);  // 创建标注
+// map.addOverlay(marker);               // 将标注添加到地图中
+// marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
 
 
 // 绑定事件(房源)
@@ -126,3 +142,17 @@ document.getElementById("search-bank").onclick=function(){
 document.getElementById("search-hotel").onclick=function(){
     local.searchNearby("酒店",mPoint,1000);
 };
+
+
+// 修改标记的图片路径(先执行点击事件， 然后出发改变样式)
+
+
+// function markersChangeImg(){  
+//     var  spanClass = new Object();  
+//     // spanClass = document.getElementsByClassName("BMap_Marker").getElementsByTagName("img");
+//     //获取span.BMap_Marker下的img
+//     spanClass = document.getElementsByClassName("BMap_Marker");
+//     //  return spanClass; 
+//     return  console.log(spanClass);
+// };  
+
