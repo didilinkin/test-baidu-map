@@ -78,4 +78,5 @@ var gulp = require('gulp'), 						// gulp
 	});
 
 // 测试diff
+// 测试diff-2
 	gulp.task('default', ['connect', 'watch'])
