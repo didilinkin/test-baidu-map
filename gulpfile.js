@@ -77,4 +77,5 @@ var gulp = require('gulp'), 						// gulp
 			gulp.watch('src/js/*.js',['minifyjs']);
 	});
 
+// 测试diff
 	gulp.task('default', ['connect', 'watch'])
