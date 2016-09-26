@@ -209,3 +209,21 @@ function loadPoint(list) {
 // // 默认加载buildingMarker
 // loadPoint(buildingMarker);
 // map.setViewport(buildingMarker); //让所有点在视野范围内
+
+
+///////////////////////
+//// 添加自定义覆盖物  ///
+///////////////////////
+
+// 使用构造函数 将数据对象输出
+function Person(code,name,resourceAmount,longitude,latitude,priceBeginning,beginningUnit){
+    this.code = code;                           // 编码
+    this.name = name;                           // 楼盘名称
+    this.resourceAmount = resourceAmount;       // 资源数量
+    this.longitude = longitude;                 // 地理经度
+    this.latitude = latitude;                   // 地理纬度
+    this.priceBeginning = priceBeginning;       // 价格起点（数值）
+    this.beginningUnit = beginningUnit;         // 起点单位
+}
+var person1 = new Person("Tom",25,"software");
+var person2 = new Person("bu",25,"software");
