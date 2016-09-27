@@ -7,3 +7,7 @@ ulList.appendChild(liList);
 
 # 2016年9月13日 js部分想用通过jquery添加地图标志
 发现并不能简单通过更改地标img图标修改,因为涉及到定位问题。所以还是需要通过百度API的方法来修改
+
+# main.js 自定义名称
+
+`buildingMarker` : 附近楼盘 坐标点 数组

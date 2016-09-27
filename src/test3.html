@@ -19,7 +19,7 @@
 <script type="text/javascript">
 	// 百度地图API功能
 	var mp = new BMap.Map("allmap");
-	mp.centerAndZoom(new BMap.Point(116.3964,39.9093), 15);
+	mp.centerAndZoom(new BMap.Point(120.389014,36.073178), 15);
 	mp.enableScrollWheelZoom();
 	// 复杂的自定义覆盖物
     function ComplexCustomOverlay(point, text, mouseoverText){
@@ -83,7 +83,9 @@
     }
     var txt = "银湖海岸城", mouseoverTxt = txt + " " + parseInt(Math.random() * 1000,10) + "套" ;
 
-    var myCompOverlay = new ComplexCustomOverlay(new BMap.Point(116.407845,39.914101), "银湖海岸城",mouseoverTxt);
+    var myCompOverlay = new ComplexCustomOverlay(
+		new BMap.Point(120.383566,36.06843), "银湖海岸城",mouseoverTxt
+	);
 
     mp.addOverlay(myCompOverlay);
 
