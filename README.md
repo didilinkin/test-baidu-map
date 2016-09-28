@@ -11,3 +11,5 @@ ulList.appendChild(liList);
 # main.js 自定义名称
 
 `buildingMarker` : 附近楼盘 坐标点 数组
+`ComplexCustomOverlay` : 自定义覆盖物 对象（目标 放入addBuilding函数执行打点）
+`addBuilding` : 打自定义覆盖物 程序 函数

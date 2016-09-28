@@ -203,14 +203,13 @@ function searchFunction(name){
 
 // 绑定事件(附近房源)————自定义房源数据
 searchHousing.onclick=function(){
-    // deletePoint();
-    remove_overlay();
+    remove_overlay();       //清除覆盖物
     map.addOverlay(circle);
-    // addPoint(); // 测试自定义点 打点成功
-    // map.addOverlay(myCompOverlay); // 测试成功
 
-    // addBuilding("市政府",22,120.389014,36.073178);
-    addBuilding("市政府");
+
+    // 添加自定义覆盖物
+    // map.addOverlay(myCompOverlay);
+    addBuilding("市政府",120.389014,36.073178,22);
 };
 
 // 控件绑定点击事件(交通)
@@ -243,8 +242,42 @@ searchHotel.onclick = function(){
 
 
 
+/////////////////////////////
+///// 定义楼盘坐标点 对象 //////
+/////////////////////////////
 
-
+var buildingMarker = [
+    // 坐标1-市政府
+    {
+        code: "A001",                   // 编码
+        name: "市政府",                  // 楼盘名称
+        longitude: "120.389014",        // 地理经度
+        latitude: "36.073178",          // 地理纬度
+        resourceAmount: 22,             // 套数
+        priceBeginning: 10,             // 价格起点
+        beginUnit: "元"                  // 价格起点单位
+    },
+    // 坐标2-世贸中心
+    {
+        code: "A002",                   // 编码
+        name: "世贸中心",                // 楼盘名称
+        longitude: "120.383566",        // 地理经度
+        latitude: "36.06843",           // 地理纬度
+        resourceAmount: 22,             // 资源数量
+        priceBeginning: 10,             // 价格起点
+        beginUnit: "元"                 // 价格起点单位
+    },
+    // 坐标3-亚麦国际中心
+    {
+        code: "A003",                   // 编码
+        name: "亚麦国际中心",             // 楼盘名称
+        longitude: "120.383597",        // 地理经度
+        latitude: "36.217307",          // 地理纬度
+        resourceAmount: 22,             // 资源数量
+        priceBeginning: 10,             // 价格起点
+        beginUnit: "元"                 // 价格起点单位
+    }
+]
 
 
 
@@ -288,190 +321,77 @@ searchHotel.onclick = function(){
 //// 添加自定义覆盖物  ///
 ///////////////////////
 
-// 定义楼盘坐标点 对象
-var buildingMarker = [
-    // 坐标1-市政府
-    {
-        code: "A001",                   // 编码
-        name: "市政府",                  // 楼盘名称
-        longitude: "120.389014",        // 地理经度
-        latitude: "36.073178",          // 地理纬度
-        resourceAmount: 22,             // 套数
-        priceBeginning: 10,             // 价格起点
-        beginUnit: "元"                  // 价格起点单位
-    },
-    // 坐标2-世贸中心
-    {
-        code: "A002",                   // 编码
-        name: "世贸中心",                // 楼盘名称
-        longitude: "120.383566",        // 地理经度
-        latitude: "36.06843",           // 地理纬度
-        resourceAmount: 22,             // 资源数量
-        priceBeginning: 10,             // 价格起点
-        beginUnit: "元"                 // 价格起点单位
-    },
-    // 坐标3-亚麦国际中心
-    {
-        code: "A003",                   // 编码
-        name: "亚麦国际中心",             // 楼盘名称
-        longitude: "120.383597",        // 地理经度
-        latitude: "36.217307",          // 地理纬度
-        resourceAmount: 22,             // 资源数量
-        priceBeginning: 10,             // 价格起点
-        beginUnit: "元"                 // 价格起点单位
-    }
-]
-    // 复杂的自定义覆盖物（点,文本，鼠标移入文本）
-    function ComplexCustomOverlay(point, text, mouseoverText){
-        this._point = point;
-        this._text = text;
-        this._overText = mouseoverText;
-    }
+// 复杂的自定义覆盖物
+function ComplexCustomOverlay(point, text, mouseoverText){
+  this._point = point;
+  this._text = text;
+  this._overText = mouseoverText;
+}
+ComplexCustomOverlay.prototype = new BMap.Overlay();
+ComplexCustomOverlay.prototype.initialize = function(map){
+  this._map = map;
+  var div = this._div = document.createElement("div");
+  div.style.position = "absolute";
+  div.style.zIndex = BMap.Overlay.getZIndex(this._point.lat);
+  div.style.backgroundColor = "#EE5D5B";
+  div.style.border = "1px solid #BC3B3A";
+  div.style.color = "white";
+  div.style.height = "18px";
+  div.style.padding = "2px";
+  div.style.lineHeight = "18px";
+  div.style.whiteSpace = "nowrap";
+  div.style.MozUserSelect = "none";
+  div.style.fontSize = "12px"
+  var span = this._span = document.createElement("span");
+  div.appendChild(span);
+  span.appendChild(document.createTextNode(this._text));
+  var that = this;
 
-    // 复杂自定义覆盖物.原型 = 百度地图.覆盖物对象
-    ComplexCustomOverlay.prototype = new BMap.Overlay();
-    // 复杂自定义覆盖物.——初始化     样式描述
-    ComplexCustomOverlay.prototype.initialize = function(map){
-        this._map = map;
-        var div = this._div = document.createElement("div");
-        div.style.position = "absolute";
-        div.style.zIndex = BMap.Overlay.getZIndex(this._point.lat);
-        div.style.backgroundColor = "#EE5D5B";
-        div.style.border = "1px solid #BC3B3A";
-        div.style.color = "white";
-        div.style.height = "18px";
-        div.style.padding = "2px";
-        div.style.lineHeight = "18px";
-        div.style.whiteSpace = "nowrap";
-        div.style.MozUserSelect = "none";
-        div.style.fontSize = "12px"
+  var arrow = this._arrow = document.createElement("div");
+  arrow.style.background = "url(http://map.baidu.com/fwmap/upload/r/map/fwmap/static/house/images/label.png) no-repeat";
+  arrow.style.position = "absolute";
+  arrow.style.width = "11px";
+  arrow.style.height = "10px";
+  arrow.style.top = "22px";
+  arrow.style.left = "10px";
+  arrow.style.overflow = "hidden";
+  div.appendChild(arrow);
 
-        var span = this._span = document.createElement("span");
-        div.appendChild(span);
+  div.onmouseover = function(){
+    this.style.backgroundColor = "#6BADCA";
+    this.style.borderColor = "#0000ff";
+    this.getElementsByTagName("span")[0].innerHTML = that._overText;
+    arrow.style.backgroundPosition = "0px -20px";
+  }
 
-        span.appendChild(document.createTextNode(this._text));
-        var that = this;
+  div.onmouseout = function(){
+    this.style.backgroundColor = "#EE5D5B";
+    this.style.borderColor = "#BC3B3A";
+    this.getElementsByTagName("span")[0].innerHTML = that._text;
+    arrow.style.backgroundPosition = "0px 0px";
+  }
 
-        var arrow = this._arrow = document.createElement("div");
-        arrow.style.background = "url(http://map.baidu.com/fwmap/upload/r/map/fwmap/static/house/images/label.png) no-repeat";
-        arrow.style.position = "absolute";
-        arrow.style.width = "11px";
-        arrow.style.height = "10px";
-        arrow.style.top = "22px";
-        arrow.style.left = "10px";
-        arrow.style.overflow = "hidden";
-        div.appendChild(arrow);
+  map.getPanes().labelPane.appendChild(div);
 
-        div.onmouseover = function(){
-          this.style.backgroundColor = "#6BADCA";
-          this.style.borderColor = "#0000ff";
-          this.getElementsByTagName("span")[0].innerHTML = that._overText;
-          arrow.style.backgroundPosition = "0px -20px";
-        }
+  return div;
+}
+ComplexCustomOverlay.prototype.draw = function(){
+  var map = this._map;
+  var pixel = map.pointToOverlayPixel(this._point);
+  this._div.style.left = pixel.x - parseInt(this._arrow.style.left) + "px";
+  this._div.style.top  = pixel.y - 30 + "px";
+}
+var txt = "银湖海岸城",
+    mouseoverTxt = txt + " " + parseInt(Math.random() * 1000,10) + "套" ;
 
-        div.onmouseout = function(){
-          this.style.backgroundColor = "#EE5D5B";
-          this.style.borderColor = "#BC3B3A";
-          this.getElementsByTagName("span")[0].innerHTML = that._text;
-          arrow.style.backgroundPosition = "0px 0px";
-        }
+// var myCompOverlay = new ComplexCustomOverlay(
+//     new BMap.Point(120.383566,36.06843), "银湖海岸城",mouseoverTxt
+// );
 
-        map.getPanes().labelPane.appendChild(div);
-
-        return div;
-    }
-    ComplexCustomOverlay.prototype.draw = function(){
-      var map = this._map;
-      var pixel = map.pointToOverlayPixel(this._point);
-      this._div.style.left = pixel.x - parseInt(this._arrow.style.left) + "px";
-      this._div.style.top  = pixel.y - 30 + "px";
-    }
-    var txt = "银湖海岸城",mouseoverTxt = txt + " " + parseInt(Math.random() * 1000,10) + "套" ;
-
-    // 添加 点任务 tpoint(测试坐标)
-    // function addPoint(){
-    //     // // 测试点坐标
-    //     longitude =  120.383566 //经度
-    //     latitude =  36.06843    // 纬度
-    //
-    //     tpoint = new BMap.Point(longitude, latitude)
-    //     var marker = new BMap.Marker(tpoint);
-    //     map.addOverlay(marker);
-    // }
-
-    // test3实例 加入测试
-    var myCompOverlay = new ComplexCustomOverlay(
-		new BMap.Point(120.383566,36.06843), "世贸",mouseoverTxt
-	);
-
-    // function addBuilding(name,resourceAmount,longitude,latitude){
-    //     new BMap.Point(longitude,latitude),name,resourceAmount;
-    // };
-
-    function addBuilding(name){
-        console.log(name);
+    // 添加单个自定义覆盖物成功
+    function addBuilding(name,longitude,latitude,resourceAmount){
+        var myCompOverlay = new ComplexCustomOverlay(
+            new BMap.Point(longitude,latitude),name,resourceAmount
+        );
+        map.addOverlay(myCompOverlay);
     };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // function Person(code,name,resourceAmount,longitude,latitude,priceBeginning,beginningUnit){
-    //     this.code = code;                           // 编码
-    //     this.name = name;                           // 楼盘名称
-    //     this.resourceAmount = resourceAmount;       // 资源数量
-    //     this.longitude = longitude;                 // 地理经度
-    //     this.latitude = latitude;                   // 地理纬度
-    //     this.priceBeginning = priceBeginning;       // 价格起点（数值）
-    //     this.beginningUnit = beginningUnit;         // 起点单位
-    // }
-    // var person1 = new Person("Tom",25,"software");
-    // var person2 = new Person("bu",25,"software");
