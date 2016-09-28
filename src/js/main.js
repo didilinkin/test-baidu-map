@@ -209,8 +209,7 @@ searchHousing.onclick=function(){
 
     // 添加自定义覆盖物
     // map.addOverlay(myCompOverlay);
-    addBuilding("市政府",120.389014,36.073178,22,800,"");
-    addBuilding("亚麦国际中心",120.383597,36.217307,14,300,"");
+    addBuilding(oneArr);
 };
 
 // 控件绑定点击事件(交通)
@@ -256,7 +255,7 @@ var buildingMarker = [
         latitude: "36.073178",          // 地理纬度
         resourceAmount: 22,             // 套数
         priceBeginning: 10,             // 价格起点
-        beginUnit: "元"                  // 价格起点单位
+        beginUnit: ""                   // 价格起点单位
     },
     // 坐标2-世贸中心
     {
@@ -266,7 +265,7 @@ var buildingMarker = [
         latitude: "36.06843",           // 地理纬度
         resourceAmount: 22,             // 资源数量
         priceBeginning: 10,             // 价格起点
-        beginUnit: "元"                 // 价格起点单位
+        beginUnit: ""                   // 价格起点单位
     },
     // 坐标3-亚麦国际中心
     {
@@ -276,11 +275,19 @@ var buildingMarker = [
         latitude: "36.217307",          // 地理纬度
         resourceAmount: 22,             // 资源数量
         priceBeginning: 10,             // 价格起点
-        beginUnit: "元"                 // 价格起点单位
+        beginUnit: ""                   // 价格起点单位
     }
 ]
 
-
+var oneArr = {
+    code: "A002",                   // 编码
+    name: "世贸中心",                // 楼盘名称
+    longitude: "120.383566",        // 地理经度
+    latitude: "36.06843",           // 地理纬度
+    resourceAmount: 22,             // 资源数量
+    priceBeginning: 10,             // 价格起点
+    beginUnit: ""                   // 价格起点单位
+}
 
 
 
@@ -410,13 +417,26 @@ ComplexCustomOverlay.prototype.draw = function(){
 // );
 
     // 添加单个自定义覆盖物成功
-    function addBuilding(name,longitude,latitude,resourceAmount,priceBeginning,beginUnit){
-        var text = "￥" + priceBeginning + beginUnit +  "起",
-            mouseoverTxt = name + " " + resourceAmount + "套" ;
+    // function addBuilding(name,longitude,latitude,resourceAmount,priceBeginning,beginUnit){
+    //     var text = "￥" + priceBeginning + beginUnit +  "起",
+    //         mouseoverTxt = name + " " + resourceAmount + "套" ;
+    //
+    //     var myCompOverlay = new ComplexCustomOverlay(
+    //
+    //         new BMap.Point(longitude,latitude),text,mouseoverTxt
+    //     );
+    //     map.addOverlay(myCompOverlay);
+    //
+    // };
+
+    // 测试单个数组对象
+    function addBuilding(Arr){
+        var text = "￥" + Arr.priceBeginning + Arr.beginUnit +  "起",
+            mouseoverTxt = Arr.name + " " + Arr.resourceAmount + "套" ;
 
         var myCompOverlay = new ComplexCustomOverlay(
 
-            new BMap.Point(longitude,latitude),text,mouseoverTxt
+            new BMap.Point(Arr.longitude,Arr.latitude),text,mouseoverTxt
         );
         map.addOverlay(myCompOverlay);
 
