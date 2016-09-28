@@ -17,3 +17,7 @@ ulList.appendChild(liList);
 `addBuilding` : 打自定义覆盖物 程序 函数
 
 `oneArr` : 测试一个自定义坐标对象 数组
+
+`ObjGroup` : 多个坐标对象组成的对象集合  对象
+
+`Arr` : 循环打坐标时 function内赋值的一个对象  对象
