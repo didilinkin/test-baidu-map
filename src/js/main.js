@@ -209,7 +209,8 @@ searchHousing.onclick=function(){
 
     // 添加自定义覆盖物
     // map.addOverlay(myCompOverlay);
-    addBuilding("市政府",120.389014,36.073178,22);
+    addBuilding("市政府",120.389014,36.073178,22,800,"");
+    addBuilding("亚麦国际中心",120.383597,36.217307,14,300,"");
 };
 
 // 控件绑定点击事件(交通)
@@ -322,10 +323,28 @@ var buildingMarker = [
 ///////////////////////
 
 // 复杂的自定义覆盖物
-function ComplexCustomOverlay(point, text, mouseoverText){
+function ComplexCustomOverlay(
+    point,
+    text,
+    mouseoverText,
+    code,
+    name,
+    longitude,latitude,
+    resourceAmount,
+    priceBeginning,
+    beginUnit
+){
   this._point = point;
   this._text = text;
   this._overText = mouseoverText;
+  // 新加
+  this.code = code;                         // 楼盘编码
+  this.name = name;                         // 楼盘名称
+  this.longitude = longitude;               // 地理经度
+  this.latitude = latitude;                 // 地理纬度
+  this.resourceAmount = resourceAmount;     // 资源数量
+  this.priceBeginning = priceBeginning;     // 价格起点
+  this.beginUnit = beginUnit;               // 价格起点单位
 }
 ComplexCustomOverlay.prototype = new BMap.Overlay();
 ComplexCustomOverlay.prototype.initialize = function(map){
@@ -381,17 +400,24 @@ ComplexCustomOverlay.prototype.draw = function(){
   this._div.style.left = pixel.x - parseInt(this._arrow.style.left) + "px";
   this._div.style.top  = pixel.y - 30 + "px";
 }
-var txt = "银湖海岸城",
-    mouseoverTxt = txt + " " + parseInt(Math.random() * 1000,10) + "套" ;
+
+// 声明默认文字样式（可以将它放入下面生成函数）
+// var txt = "银湖海岸城",（355,378 行使用过这个变量）
+//     mouseoverTxt = txt + " " + parseInt(Math.random() * 1000,10) + "套" ;（371行使用过）
 
 // var myCompOverlay = new ComplexCustomOverlay(
 //     new BMap.Point(120.383566,36.06843), "银湖海岸城",mouseoverTxt
 // );
 
     // 添加单个自定义覆盖物成功
-    function addBuilding(name,longitude,latitude,resourceAmount){
+    function addBuilding(name,longitude,latitude,resourceAmount,priceBeginning,beginUnit){
+        var text = "￥" + priceBeginning + beginUnit +  "起",
+            mouseoverTxt = name + " " + resourceAmount + "套" ;
+
         var myCompOverlay = new ComplexCustomOverlay(
-            new BMap.Point(longitude,latitude),name,resourceAmount
+
+            new BMap.Point(longitude,latitude),text,mouseoverTxt
         );
         map.addOverlay(myCompOverlay);
+
     };
