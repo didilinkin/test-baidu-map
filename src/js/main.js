@@ -219,7 +219,9 @@ function OutputList(outputKeyword){
 		}
 	};
 	var local = new BMap.LocalSearch(map, options);
-	local.search(outputKeyword);
+    // 因为是搜索附近 所以不能使用local.search()方法,
+    // 而应该是local.searchNearby();方法加以控制          local.searchNearby('酒店',mPoint,1000);
+	local.searchNearby(outputKeyword,mPoint,900);
 
     // 调用上面的 本地检索 然后在地图标记的函数 传入参数
     searchFunction(outputKeyword);

@@ -25,3 +25,15 @@ ulList.appendChild(liList);
 `OutputList` : 通过API本地输出列表文字 函数
 
 `outputKeyword` : 输出的关键字 OutputList函数参数 变量
+
+***
+
+# 百度地图方法
+
+`local.searchNearby([搜索内容对象],[中心点的坐标],[范围米数])`
+
+以`中心点`检索附近`范围`的`内容对象`
+### 示例:
+```javascript
+local.searchNearby(outputKeyword,mPoint,900);
+```
