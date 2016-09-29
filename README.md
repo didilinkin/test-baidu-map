@@ -37,3 +37,10 @@ ulList.appendChild(liList);
 ```javascript
 local.searchNearby(outputKeyword,mPoint,900);
 ```
+
+
+`results.getPoi(i).point` 获取检索出来的内容坐标
+
+[API说明地址](http://developer.baidu.com/map/reference/index.php?title=Class:%E6%9C%8D%E5%8A%A1%E7%B1%BB/LocalResultPoi)
+
+`resultsList` 检索出来的对象列表集合

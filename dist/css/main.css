@@ -1,0 +1,163 @@
+/* CSS Document */
+
+.navbar{ width:100%; height:140px; padding:0px; background:#fff; box-shadow:0 4px 6px 0 rgba(0,0,0,0.24); margin-bottom:20px;}
+.navbar .inner{ width:1180px; height:140px; padding:0 10px; margin:0 auto;}
+.navbar .inner img{ float:left; margin-top:39px;}
+.navbar .inner ul{ float:left; margin-left:33px; position:relative;}
+.navbar .inner li{ position:relative; float:left; line-height:140px; width:auto; height:140px; margin:0 15px; text-align:center;}
+.navbar .inner li a{ color:#808080; text-align:center; font-size:24px;}/* border-right:1px solid #fff;*/
+.navbar .inner li i{ position:absolute; height:2px; bottom:0; left:0; width:100%; background:#ff2725; transform:scale(0); transition: all 0.4s linear;}
+.navbar .inner li:hover i{ transform:scale(1)}
+.navbar .inner li:nth-child(4) a{ border:none;}
+.navbar .inner ul .line{ position:absolute; height:2px; bottom:0; left:0; width:560px;}
+.navbar .inner ul .line a{ display:block; width:130px; height:2px; background:none;}
+.navbar .inner ul .line a i{ display:block; width:100px; height:2px; background:#ff2725; margin:0 auto;}
+.navbar .inner .go{ display:block; float:right; width:50px; height:50px; margin-top:45px; margin-right:40px; background:url(../images/icon.png) -50px 0 no-repeat;}
+
+
+
+
+/*房源页面css*/
+.house{ width:100%; height:auto;}
+.house .banner{ width:100%; height:620px;}
+.house .banner .top{ width:1180px; height:60px; line-height:60px; padding:0 10px 0 10px; margin:0 auto;}
+.house .banner .top img{ float:left; margin:21px 6px 0 0;}
+.house .banner .btm{ width:100%; height:560px; background:url(../images/house-bg.jpg) center center no-repeat;}
+.house .banner .btm .ct{ position:relative; width:1180px; height:560px; padding:0 10px; margin:0 auto;}
+.house .banner .btm .ct .box{ position:absolute; left:0; top:118px; line-height:30px; font-weight:bold; width:260px; height:259px; background:rgba(0,0,0,0.6); padding:20px 20px 46px 20px; font-size:14px; color:#fff;}
+.house .banner .btm .ct .box a{ position:absolute; left:105px; bottom:20px; text-align:center; display:block; width:74px; height:24px; line-height:24px; border:1px #b6b6b6 solid; color:#fff; font-size:12px; margin:0 auto;}
+.house .banner .btm .ct .order{ position:absolute; right:0; bottom:22px; width:155px; height:40px; background:#ff2725; border-radius:5px; text-align:center; line-height:40px;}
+.house .banner .btm .ct .order a{ display:block; color:#fff;}
+.house .banner .btm .ct .order .top-form{ display:none; position:absolute; left:-87px; top:-306px; width:202px; height:306px; padding:20px; background:#e7e7e7;}
+.house .banner .btm .ct .order .top-form .cross{ margin-left:186px; margin-bottom:10px; width:16px; height:16px; cursor:pointer; background:url(../images/cross.png) center no-repeat;}
+.house .banner .btm .ct .order .top-form input[type="text"]{ width:182px; height:40px; line-height:40px; padding:0 10px; border-radius:4px; background:#fff; margin-bottom:20px;}
+.house .banner .btm .ct .order .top-form textarea{ width:182px; height:70px; line-height:35px; padding:0 10px; border-radius:4px; }
+.house .banner .btm .ct .order .top-form .res{ height:20px; line-height:20px; color:#ff2725; font-size:14px; text-align:left;}
+.house .banner .btm .ct .order .top-form input[type="submit"]{ width:202px; height:40px; line-height:40px; border-radius:4px; background:#333; color:#fff; cursor:pointer;}
+.house .banner .btm .ct .order .top-form span{ display:block; position:relative;}
+.house .banner .btm .ct .order .top-form span em{ position:absolute; display:none; width:auto; padding:0 10px 0 30px; left:212px; color:#fff; background:#ff2725 url(../images/erroricon.png) 10px center no-repeat; top:0; opacity:0.8; border-radius:2px; height:24px; line-height:24px; font-size:14px; color:#fff; font-style:normal; top:8px;}	/*display:table*/
+.house .banner .btm .ct .order .top-form span em:before{ content:''; position:absolute; left:-10px; top:7px; width:0px; height:0px; border:5px transparent solid; border-right:5px #ff2725 solid;}
+
+.house .inner{ width:1180px; height:auto; padding:15px 10px; margin:0 auto;}
+.house .inner .sec01{ width:100%; height:36px; line-height:36px; padding-top:5px;}
+.house .inner .sec01 ul{ height:36px; line-height:36px;}
+.house .inner .sec01 ul li{ display:inline-block; margin-right:20px; width:110px; height:36px; border-radius:4px; background:#ccc;}
+.house .inner .sec01 ul li a{ display:block; text-align:center;}
+
+.house .inner .sec02{ width:100%; padding-top:40px; overflow:hidden;}
+.house .inner .sec02 h2{ position:relative; height:70px; line-height:70px; padding-left:20px; font-size:24px; color:#333; font-weight:400;}
+.house .inner .sec02 h2:before{ content:''; display:block; position:absolute; width:4px; height:28px; left:0; top:21px; background:#2f2f2f;}
+.house .inner .sec02>ul{ width:1200px;}
+.house .inner .sec02>ul>li{ float:left; width:220px; height:280px; margin:0 20px 20px 0; background:#fff;}
+.house .inner .sec02>ul>li h3{ position:relative; height:66px; line-height:66px; font-size:14px; padding-left:20px; color:#b2b2b2;}
+.house .inner .sec02>ul>li h3 img{ position:absolute; right:15px; top:23px; cursor:pointer;}
+.house .inner .sec02>ul>li h3 span{ font-size:24px; color:#ff2725; font-weight:700;}
+.house .inner .sec02>ul>li h3 em{ font-style:normal; position:absolute; display:none; height:20px; line-height:20px; font-size:12px; padding:0 10px; top:-5px; right:-5px; color:#fff; background:#ff2725;}
+.house .inner .sec02>ul>li h3 em:before{ content:''; position:absolute; right:25px; border:5px solid transparent; border-top:5px solid #ff2725; top:20px;}
+.house .inner .sec02>ul>li p{ position:relative; width:220px; height:152px;}
+.house .inner .sec02>ul>li p a{ display:block;}
+.house .inner .sec02>ul>li p i.bg1{ font-style:normal; position:absolute; display:block; height:20px; line-height:20px; font-size:12px; padding:0 10px; top:10px; right:0; color:#fff; background:#289dec;}
+.house .inner .sec02>ul>li p i.bg2{ font-style:normal; position:absolute; display:block; height:20px; line-height:20px; font-size:12px; padding:0 10px; top:10px; right:0; color:#fff; background:#ff2725;}
+.house .inner .sec02>ul>li ul{ padding:0 10px; height:62px; font-size:14px; color:#b2b2b2;}
+.house .inner .sec02>ul>li ul li{ height:62px; line-height:62px; float:left;}
+.house .inner .sec02>ul>li ul li:last-child{ float:right; text-align:right;}
+.house .inner .sec02>a{ display:block; width:133px; height:30px; line-height:30px; border:1px solid #bababa; margin:0 auto; color:#999; font-size:14px; text-align:center; cursor:pointer;}
+
+.house .inner .sec03{ width:100%; padding-top:40px; overflow:hidden;}
+.house .inner .sec03 h2{ position:relative; height:70px; line-height:70px; padding-left:20px; font-size:24px; color:#333; font-weight:400;}
+.house .inner .sec03 h2:before{ content:''; display:block; position:absolute; width:4px; height:28px; left:0; top:21px; background:#2f2f2f;}
+.house .inner .sec03>ul{ width:1200px;}
+.house .inner .sec03>ul>li{ float:left; width:220px; height:214px; margin:0 20px 20px 0; background:#fff;}
+.house .inner .sec03>ul>li p{ position:relative; width:220px; height:152px;}
+.house .inner .sec03>ul>li p span{ display:block; padding:5px; overflow:hidden; width:20px; height:20px; background:rgba(255,255,255,0.5); position:absolute; right:10px; bottom:10px;}
+.house .inner .sec03>ul>li p em{ font-style:normal; position:absolute; display:none; height:20px; line-height:20px; font-size:12px; padding:0 10px; bottom:50px; right:-5px; color:#fff; background:#ff2725;}
+.house .inner .sec03>ul>li p em:before{ content:''; position:absolute; right:25px; border:5px solid transparent; border-top:5px solid #ff2725; top:20px;}
+.house .inner .sec03>ul>li p span img{ margin:0px; padding:0px; vertical-align:top; cursor:pointer;}
+.house .inner .sec03>ul>li p i.bg1{ font-style:normal; position:absolute; display:block; height:20px; line-height:20px; font-size:12px; padding:0 10px; top:10px; right:0; color:#fff; background:#289dec;}
+.house .inner .sec03>ul>li p i.bg2{ font-style:normal; position:absolute; display:block; height:20px; line-height:20px; font-size:12px; padding:0 10px; top:10px; right:0; color:#fff; background:#ff2725;}
+.house .inner .sec03>ul>li ul{ padding:0 10px; height:62px; font-size:14px; color:#b2b2b2;}
+.house .inner .sec03>ul>li ul li{ height:62px; line-height:62px; float:left;}
+.house .inner .sec03>ul>li ul li:last-child{ float:right; text-align:right;}
+.house .inner .sec03>ul>li ul li span{ font-size:24px; font-weight:700; color:#ff2725;}
+.house .inner .sec03>a{ display:block; width:133px; height:30px; line-height:30px; border:1px solid #bababa; margin:0 auto; color:#999; font-size:14px; text-align:center; cursor:pointer;}
+
+.house .inner .sec04{ width:100%; padding-top:20px; overflow:hidden;}
+.house .inner .sec04 h2{ position:relative; height:70px; line-height:70px; padding-left:20px; font-size:24px; color:#333; font-weight:400;}
+.house .inner .sec04 h2:before{ content:''; display:block; position:absolute; width:4px; height:28px; left:0; top:21px; background:#2f2f2f;}
+.house .inner .sec04>ul{ width:1200px;}
+.house .inner .sec04>ul>li{ position:relative; float:left; width:188px; height:188px; padding:16px; margin:0 20px 20px 0; background:#fff; cursor:pointer;}
+.house .inner .sec04>ul>li span{ position:absolute; width:220px; height:220px; left:0; top:0; background:rgba(0,0,0,0.7); transform:scale(0); transition:all 0.4s linear;}
+.house .inner .sec04>ul>li i{ display:none; position:absolute; width:100%; bottom:10px; font-style:normal; height:30px; line-height:30px; text-align:center; left:0;}
+.house .inner .sec04>ul>li:hover span{ transform:scale(1)}
+.house .inner .sec04>ul>li:hover span i{display:block; color:#fff;}
+/*.house .inner .sec04>ul>li h3{ width:100%; height:70px; line-height:70px; text-align:center; color:#333; font-weight:700;}
+.house .inner .sec04>ul>li p{ height:80px; line-height:80px; color:#333; font-size:14px; text-align:center; background:#efefef;}
+.house .inner .sec04>ul>li p span{ font-size:36px; font-weight:700; color:#ff2725;}
+.house .inner .sec04>ul>li ul{ padding:10px 0 10px 30px;}
+.house .inner .sec04>ul>li ul li{ line-height:28px; height:28px; color:#b2b2b2; font-size:14px;}
+.house .inner .sec04>ul>li a{ display:block; width:88px; height:25px; line-height:25px; font-size:14px; text-align:center; border:1px #333 solid; color:#333; margin-left:30px;}*/
+.house .inner .sec04>ul>li .logo{ width:190px; height:42px; margin:0 auto; padding:33px 0; text-align:center; border-bottom:2px #e8e8e8 solid;}
+.house .inner .sec04>ul>li p{ height:44px; line-height:44px; text-align:center;}
+
+
+.house .inner .sec05{ width:100%; padding-top:20px; overflow:hidden;}
+.house .inner .sec05 h2{ position:relative; height:70px; line-height:70px; padding-left:20px; font-size:24px; color:#333; font-weight:400;}
+.house .inner .sec05 h2:before{ content:''; display:block; position:absolute; width:4px; height:28px; left:0; top:21px; background:#2f2f2f;}
+.house .inner .sec05 .view{ width:1180px; height:510px; background:#fff; overflow:hidden; position:relative;}
+.house .inner .sec05 .view ul li{ display:none;}
+.house .inner .sec05 .view ul li.on{ display:block;}
+.house .inner .sec05 .view img{ position:absolute;}
+.house .inner .sec05 .tabview{ height:30px; padding:30px 80px; background:#fff;}
+.house .inner .sec05 .tabview ul li{ display:block; float:left; height:30px; line-height:30px; border-radius:4px; margin-right:20px; background:#ccc;}
+.house .inner .sec05 .tabview ul li a{ display:block; padding:0 20px; color:#fff;}
+.house .inner .sec05 .tabview ul li.on{ background:#2f2f2f;}
+.house .inner .sec06{ width:100%; padding-top:20px; overflow:hidden;}
+.house .inner .sec06 h2{ position:relative; height:70px; line-height:70px; padding-left:20px; font-size:24px; color:#333; font-weight:400;}
+.house .inner .sec06 h2:before{ content:''; display:block; position:absolute; width:4px; height:28px; left:0; top:21px; background:#2f2f2f;}
+.house .inner .sec06>ul{ width:1200px;}
+.house .inner .sec06>ul>li{ float:left; width:580px; height:60px; line-height:60px; margin:0 20px 20px 0; color:#333; background:#fff;}
+.house .inner .sec06>ul>li span{ display:block; float:left; padding-left:25px; width:75px; height:60px; line-height:60px; color:#b2b2b2;}
+
+.house .inner .sec07{ width:100%; padding-top:20px; overflow:hidden;}
+.house .inner .sec07 h2{ position:relative; height:70px; line-height:70px; padding-left:20px; font-size:24px; color:#333; font-weight:400;}
+.house .inner .sec07 h2:before{ content:''; display:block; position:absolute; width:4px; height:28px; left:0; top:21px; background:#2f2f2f;}
+.house .inner .sec07>ul{ width:1180px;}
+.house .inner .sec07>ul>li{ position:relative; float:left; width:236px; height:230px;}
+.house .inner .sec07>ul>li:after{ content:''; position:absolute; height:230px; top:0; right:0; border-right:2px solid; border-color:rgba(151,151,151,0.22)}
+.house .inner .sec07>ul>li:nth-child(5):after{ border:none;}
+.house .inner .sec07>ul>li span{ display:block; width:38px; height:38px; margin:0 auto 6px;}
+.house .inner .sec07>ul>li p{ height:20px; line-height:20px; color:#333; font-size:14px; text-align:center;}
+.house .inner .sec07>ul>li p.sm{ height:20px; line-height:20px; font-size:12px; color:#b2b2b2; margin-top:5px;}
+.house .inner .sec07>ul>li ul{ padding:10px 0 10px 78px;}
+.house .inner .sec07>ul>li ul li{ color:#9a9a9a; font-size:14px; line-height:1.7; list-style-type:disc;}
+.house .inner .sec07>ul>li a{ display:block; width:92px; height:22px; line-height:22px; border-radius:100px; background:#a09f9f; color:#fff; margin:0 auto; font-size:12px; text-align:center;}
+.house .inner .sec07>ul>li a.active{ background:#2f2f2f;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

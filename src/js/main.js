@@ -209,9 +209,9 @@ function OutputList(outputKeyword){
 			// 判断状态是否正确
 			if (local.getStatus() == BMAP_STATUS_SUCCESS){
 				var s = [];
-                // 结果.获取当前数字POIS
-				for (var i = 0; i < results.getCurrentNumPois(); i ++){
-					s.push(results.getPoi(i).title + ", " + results.getPoi(i).address);
+                // 结果.获取当前数字POIS  getResults() 执行5次内容
+				for (var i = 0; i < 5; i ++){
+                    s.push(results.getPoi(i).title); // results.getPoi(i).point 坐标信息
 				}
                 // 绑定输出的DIV ID
 				document.getElementById("api-test").innerHTML = s.join("<br/>");

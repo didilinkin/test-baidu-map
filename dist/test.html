@@ -1,16 +1,181 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="utf-8" />
+	<title>A + office</title>
+	<!-- 添加页面其他部分样式 -->
+	<link href="css/css.css" type="text/css" rel="stylesheet">
+	<link href="css/main.css" type="text/css" rel="stylesheet">
+	<!-- /.添加页面其他部分样式 -->
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-	<link rel="stylesheet" type="text/css" href="./css/style.css" />
+	<link rel="stylesheet" type="text/css" href="./css/map.css" />
 	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=upNTUWfwOFHCZbuQvFOgT0ATGnMwb16c"></script>
-	<title>圆形区域搜索</title>
 </head>
 <body>
-	<div id="api-test"></div>
-	<div id="allmap"></div>
+
+	<div class="wrap">
+		<!--head begin-->
+		<div class="head">
+	    	<div class="tel">
+	        	<i></i>4000-000-000
+	        </div>
+	        <a href="#" class="map">
+	        	<i></i>地图找房
+	        </a>
+	        <div class="right">
+	        	<span class="accounts">
+	            	180******** &nbsp;|&nbsp; <a href="#">我的账户</a>
+	            </span>
+	            <div class="contact">
+	                <a href="#" class="qq"><span>15900000000</span></a>
+	                <a href="#" class="wx"><span><img src="images/ewm.png" width="100" height="100" alt=""></span></a>
+	                <a href="#" class="email"><span>15900000000</span></a>
+	            </div>
+	        </div>
+	    </div>
+	    <!--head end-->
+
+	    <!--nav begin-->
+		<div class="navbar">
+	    	<div class="inner">
+	            <img src="images/logo-red.png" width="220" height="62" alt="">
+	            <ul>
+	                <li><a href="#">房源信息</a><i></i></li>
+	                <li><a href="#">委托找房</a><i></i></li>
+	                <li><a href="#">投放房源</a><i></i></li>
+	                <li><a href="#">办公装修/家居</a><i></i></li>
+					<!--
+						<span class="line">
+		                    <a href="javascript:"><i></i></a>
+		                </span>
+					-->
+	            </ul>
+	            <a href="#" class="go">
+	            </a>
+	        </div>
+	    </div>
+	    <!--nav end-->
+
+
+		<!-- id="api-test" -->
+	    <div class="house">
+	        <div class="inner">
+	            <div class="sec07">
+	            	<h2>周边配套</h2>
+	                <ul>
+						<!-- 交通 -->
+			        	<li>
+			            	<span></span>
+			                <p>交通</p>
+			                <p class="sm">约4个站点</p>
+			                <ul>
+			                	<li>永安里路口北</li>
+			                </ul>
+			                <a class="active" href="javascript:">在地图上显示</a>
+						</li><!-- /.交通 -->
+
+						<!-- 快餐 -->
+			            <li>
+			            	<span></span>
+			                <p>快餐</p>
+			                <p class="sm">约4个站点</p>
+			                <ul>
+			                	<li>永安里路口北</li>
+			                </ul>
+			                <a href="javascript:">在地图上显示</a>
+						</li><!-- /.快餐 -->
+
+						<!-- 餐厅 -->
+			            <li>
+			            	<span></span>
+			                <p>餐厅</p>
+			                <p class="sm">约4个站点</p>
+			                <ul>
+			                	<li>永安里路口北</li>
+			                </ul>
+			                <a href="javascript:">在地图上显示</a>
+						</li><!-- /.餐厅 -->
+
+						<!-- 银行 -->
+			            <li>
+			            	<span></span>
+			                <p>银行</p>
+			                <p class="sm">约4个站点</p>
+			                <ul>
+			                	<li>永安里路口北</li>
+			                </ul>
+			                <a href="javascript:">在地图上显示</a>
+						</li><!-- /.银行 -->
+
+						<!-- 酒店 -->
+			            <li>
+			            	<span></span>
+			                <p>酒店</p>
+			                <p class="sm">约4个站点</p>
+			                <ul>
+			                	<li>永安里路口北</li>
+			                </ul>
+			                <a href="javascript:">在地图上显示</a>
+						</li><!-- /.酒店 -->
+
+
+			            <div class="clear"></div>
+	                </ul>
+	            </div>
+	        </div>
+	    </div>
+
+		<!-- 地图 -->
+		<div id="allmap"></div>
+		<!-- /. 地图 -->
+
+	    <!--bottom begin-->
+	    <div class="bottom">
+	    	<div class="inner">
+	        	<img src="images/ftlogo.png" class="ftlogo" width="300" height="82" alt="">
+	            <ul>
+	            	<li>
+	                	<h3>友情链接</h3>
+	                    <p>
+	                    	<a href="#">北京办公室</a><a href="#">上海办公室</a>
+	                        <a href="#">广州办公室</a><a href="#">深圳办公室</a>
+	                        <a href="#">杭州办公室</a><a href="#">黄山办公室</a>
+	                        <a href="#">安庆房地产</a><a href="#">西安办公室</a>
+	                    </p>
+					</li>
+	                <li>
+	                	<h3>出租热门</h3>
+	                    <p>
+	                    	<a href="#">北京办公室</a><a href="#">上海办公室</a>
+	                        <a href="#">广州办公室</a><a href="#">深圳办公室</a>
+	                        <a href="#">杭州办公室</a><a href="#">黄山办公室</a>
+	                        <a href="#">安庆房地产</a><a href="#">西安办公室</a>
+	                    </p>
+					</li>
+	                <li>
+	                	<h3>联系方式</h3>
+	                    <ul>
+	                    	<li><span class="qq"></span>31480000</li>
+	                        <li><span class="wx"></span>shangchao1234</li>
+	                        <li><span class="at"></span>SC-tec@163.com</li>
+	                        <li><span class="tel"></span>18663200000</li>
+	                    </ul>
+					</li>
+	            </ul>
+	        </div>
+	    </div>
+
+	    <!--bottom end-->
+	    <div class="footer">
+	    	<div class="inner">
+	        	<span>&copy; 青岛上朝信息技术有限公司 鲁备：*******4156号</span>
+	            <a href="#">关于我们</a><a href="#">网站咨询</a><a href="#">团队招聘</a><a href="#">商务合作</a><a href="#">常见问题</a><a href="#">条款与隐私</a>
+	        </div>
+	    </div>
+	</div>
+
+	<!--地图JS-->
+	<script src="./js/main.min.js" charset="utf-8"></script>
 </body>
 </html>
-<!--圆形检索-->
-<script src="./js/main.min.js" charset="utf-8"></script>
