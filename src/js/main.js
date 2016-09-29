@@ -208,13 +208,21 @@ function OutputList(outputKeyword){
 		onSearchComplete: function(results){
 			// 判断状态是否正确
 			if (local.getStatus() == BMAP_STATUS_SUCCESS){
-				var s = [];
+				// var s = [];
                 // 结果.获取当前数字POIS  getResults() 执行5次内容
 				for (var i = 0; i < 5; i ++){
-                    s.push(results.getPoi(i).title); // results.getPoi(i).point 坐标信息
+                    var s = new Object();
+                    // s.push(results.getPoi(i).title);
+                    // results.getPoi(i).point 坐标信息
+                    s.title = results.getPoi(i).title;
+                    s.pointLng = results.getPoi(i).point.lng;
+                    s.pointLat = results.getPoi(i).point.lat;
+                    console.log(s);
 				}
                 // 绑定输出的DIV ID
-				document.getElementById("List-traffic").innerHTML = s.join("<br/>");
+                var UlList = document.getElementById("List-traffic");
+                var LiList = document.createElement("li");
+	            var ResultTitle = document.createTextNode("text");
 			}
 		}
 	};

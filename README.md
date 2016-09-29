@@ -26,6 +26,11 @@ ulList.appendChild(liList);
 
 `outputKeyword` : 输出的关键字 OutputList函数参数 变量
 
+`s.title` : `results.getPoi(i).title` 存储result.title信息
+
+`s.pointLng` : `results.getPoi(i).point.lng`  存储result.坐标.经度信息
+
+`s.pointLat` : `results.getPoi(i).point.lat`  存储result.坐标.纬度信息
 ***
 
 # 百度地图方法
