@@ -21,3 +21,7 @@ ulList.appendChild(liList);
 `ObjGroup` : 多个坐标对象组成的对象集合  对象
 
 `Arr` : 循环打坐标时 function内赋值的一个对象  对象
+
+`OutputList` : 通过API本地输出列表文字 函数
+
+`outputKeyword` : 输出的关键字 OutputList函数参数 变量

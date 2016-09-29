@@ -193,11 +193,36 @@ function remove_overlay(){
 	map.clearOverlays();
 }
 
-//（搜索）函数
-function searchFunction(name){
+//（搜索）函数    检索功能 将在 下面API输出函数当中调用  参数相同
+function searchFunction(outputKeyword){
     remove_overlay();
     map.addOverlay(circle);
-    local.searchNearby(name,mPoint,900);
+    local.searchNearby(outputKeyword,mPoint,900);
+}
+
+
+// 检索关键词 本地API文字输出(将其封在一个构造函数中)
+function OutputList(outputKeyword){
+	var options = {
+        // 搜索整个地图-(结果)
+		onSearchComplete: function(results){
+			// 判断状态是否正确
+			if (local.getStatus() == BMAP_STATUS_SUCCESS){
+				var s = [];
+                // 结果.获取当前数字POIS
+				for (var i = 0; i < results.getCurrentNumPois(); i ++){
+					s.push(results.getPoi(i).title + ", " + results.getPoi(i).address);
+				}
+                // 绑定输出的DIV ID
+				document.getElementById("api-test").innerHTML = s.join("<br/>");
+			}
+		}
+	};
+	var local = new BMap.LocalSearch(map, options);
+	local.search(outputKeyword);
+
+    // 调用上面的 本地检索 然后在地图标记的函数 传入参数
+    searchFunction(outputKeyword);
 }
 
 
@@ -205,31 +230,30 @@ function searchFunction(name){
 searchHousing.onclick=function(){
     remove_overlay();       //清除覆盖物
     map.addOverlay(circle);
-
-
     // 添加自定义覆盖物(多个对象)
     addBuilding(buildingMarker);
 };
 
 // 控件绑定点击事件(交通)
 searchTraffic.onclick = function(){
-    searchFunction("公交");
+    OutputList("公交站");
 };
 // 控件绑定点击事件(快餐)
 searchSnack.onclick = function(){
-    searchFunction("快餐");
+    OutputList("快餐");
 };
 // 控件绑定点击事件(餐厅)
 searchRestaurant.onclick = function(){
-    searchFunction("餐厅");
+    OutputList("餐厅");
+
 };
 // 控件绑定点击事件(银行)
 searchBank.onclick = function(){
-    searchFunction("银行");
+    OutputList("银行");
 };
 // 控件绑定点击事件(酒店)
 searchHotel.onclick = function(){
-    searchFunction("酒店");
+    OutputList("酒店");
 };
 
 
@@ -397,14 +421,6 @@ ComplexCustomOverlay.prototype.draw = function(){
   this._div.style.top  = pixel.y - 30 + "px";
 }
 
-// 声明默认文字样式（可以将它放入下面生成函数）
-// var txt = "银湖海岸城",（355,378 行使用过这个变量）
-//     mouseoverTxt = txt + " " + parseInt(Math.random() * 1000,10) + "套" ;（371行使用过）
-
-// var myCompOverlay = new ComplexCustomOverlay(
-//     new BMap.Point(120.383566,36.06843), "银湖海岸城",mouseoverTxt
-// );
-
 // 添加单个自定义覆盖物
 function addBuilding(ObjGroup){
     for (var i = 0; i < ObjGroup.length; i++) {
@@ -413,10 +429,31 @@ function addBuilding(ObjGroup){
         // 拼接属性文字内容
         var text = "￥" + Arr.priceBeginning + Arr.beginUnit +  "起",
             mouseoverTxt = Arr.name + " " + Arr.resourceAmount + "套" ;
-
         var myCompOverlay = new ComplexCustomOverlay(
             new BMap.Point(Arr.longitude,Arr.latitude),text,mouseoverTxt
         );
         map.addOverlay(myCompOverlay);
     }
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 定位注释
