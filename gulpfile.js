@@ -80,3 +80,5 @@ var gulp = require('gulp'), 						// gulp
 // 测试diff
 // 测试diff-2
 	gulp.task('default', ['connect', 'watch'])
+	// 压缩任务　html/Sass/js
+	gulp.task('mini', ['html', 'minifyjs','sass'])

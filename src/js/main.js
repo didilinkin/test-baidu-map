@@ -214,7 +214,7 @@ function OutputList(outputKeyword){
                     s.push(results.getPoi(i).title); // results.getPoi(i).point 坐标信息
 				}
                 // 绑定输出的DIV ID
-				document.getElementById("api-test").innerHTML = s.join("<br/>");
+				document.getElementById("List-traffic").innerHTML = s.join("<br/>");
 			}
 		}
 	};
@@ -423,7 +423,7 @@ ComplexCustomOverlay.prototype.draw = function(){
   this._div.style.top  = pixel.y - 30 + "px";
 }
 
-// 添加单个自定义覆盖物
+// Ajax添加单个自定义覆盖物
 function addBuilding(ObjGroup){
     for (var i = 0; i < ObjGroup.length; i++) {
         var Arr = new Object();
@@ -447,6 +447,7 @@ function addBuilding(ObjGroup){
 
 
 
+// 页面加载时 向list列表添加内容事件()
 
 
 
