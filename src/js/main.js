@@ -238,10 +238,10 @@ function OutputList(outputKeyword,Ul){
                     var text = s.title;
                     var textnode=document.createTextNode(text);
 
-                    // 将　文本节点　加入到　LiList 节点
-                    LiList.appendChild(textnode);
-                    // 将　LiList 节点　加入到　UlList 节点
-	                UlList.appendChild(LiList);
+                    // // 将　文本节点　加入到　LiList 节点
+                    // LiList.appendChild(textnode);
+                    // // 将　LiList 节点　加入到　UlList 节点
+	                // UlList.appendChild(LiList);
 				}
 			}
 		}
