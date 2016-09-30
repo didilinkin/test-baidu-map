@@ -9,7 +9,13 @@ map.addControl(new BMap.NavigationControl(
         type: BMAP_NAVIGATION_CONTROL_SMALL
     }));
 // 支持鼠标滚轮缩放操作
-map.enableScrollWheelZoom();
+map.enableScrollWheelZoom(false);
+//禁止拖拽
+map.disableDragging();
+setTimeout(function(){
+   map.enableDragging();   //两秒后开启拖拽
+   //map.enableInertialDragging();   //3.5秒后开启惯性拖拽
+}, 3500);
 // 创建标点,层级(15级别)
 map.centerAndZoom(mPoint,15);
 
@@ -206,11 +212,17 @@ function searchFunction(outputKeyword){
 // 单独标记函数（百度方法）
 function oneAddOverlay(PointLng,PointLat) {
     // 清理地图上面所有点
-    // map.clearOverlays();
+    map.clearOverlays();
     var marker = new BMap.Marker(new BMap.Point(PointLng,PointLat));
     map.addOverlay(marker);
 }
 
+
+function OutputListBtn(BtnId){
+    var aBtn = $("#"+BtnId);
+    $(".output--list a").removeClass("active");
+    aBtn.addClass("active");
+}
 
 // 检索关键词 本地API文字输出(将其封在一个构造函数中)
 function OutputList(outputKeyword,Ul){
@@ -285,6 +297,7 @@ searchBank.onclick = function(){
 searchHotel.onclick = function(){
     OutputList("酒店","List-hotel");
 };
+
 
 
 
@@ -429,18 +442,23 @@ var Btnhotel = document.getElementById("OutputList-hotel");
 // 绑定列表上的按钮按键
 Btntraffic.onclick = function(){
     OutputList("公交站","List-traffic");
+    OutputListBtn("OutputList-traffic");
 };
 Btnsnack.onclick = function(){
     OutputList("快餐","List-snack");
+    OutputListBtn("OutputList-snack");
 };
 Btnrestaurant.onclick = function(){
     OutputList("餐厅","List-restaurant");
+    OutputListBtn("OutputList-restaurant");
 };
 Btnbank.onclick = function(){
     OutputList("银行","List-bank");
+    OutputListBtn("OutputList-bank");
 };
 Btnhotel.onclick = function(){
     OutputList("酒店","List-hotel");
+    OutputListBtn("OutputList-hotel");
 };
 
 

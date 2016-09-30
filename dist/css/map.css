@@ -33,3 +33,9 @@ p {
   #ulList li:hover {
     background: #333;
     color: #FFF; }
+
+ul#List-traffic li, ul#List-snack li, ul#List-restaurant li, ul#List-bank li, ul#List-hotel li {
+  cursor: pointer; }
+
+a#OutputList-traffic, a#OutputList-snack, a#OutputList-restaurant, a#OutputList-bank, a#OutputList-hotel {
+  cursor: pointer; }

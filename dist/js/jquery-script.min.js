@@ -27,9 +27,11 @@ $(document).ready(function(){
         data: mPoint,
         success: function(backDate){
             $( "＃search-housing" ).each(function ( i, domEle) {
-                
+
             });
         },
         dataType: dataType
     });
+
+    
 });
