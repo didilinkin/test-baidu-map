@@ -362,7 +362,7 @@ searchHousing.onclick=function(){
     remove_overlay();       //清除覆盖物
     map.addOverlay(circle);
     // 添加自定义覆盖物(多个对象)
-    addBuilding(buildingMarker);
+    // addBuilding(buildingMarker); // 使用ajax事件  暂时注释
 };
 
 // 控件绑定点击事件(交通)

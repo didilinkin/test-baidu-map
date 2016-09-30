@@ -1,0 +1,29 @@
+[
+    {
+        code: "A001",
+        name: "市政府",
+        longitude: "120.389014",
+        latitude: "36.073178",
+        resourceAmount: 10,
+        priceBeginning: 11,
+        beginUnit: ""
+    },
+    {
+        code: "A002",
+        name: "世贸中心",
+        longitude: "120.383566",
+        latitude: "36.06843",
+        resourceAmount: 20,
+        priceBeginning: 21,
+        beginUnit: ""
+    },
+    {
+        code: "A003",
+        name: "亚麦国际中心",
+        longitude: "120.383602",
+        latitude: "36.070447",
+        resourceAmount: 30,
+        priceBeginning: 31,
+        beginUnit: ""                   
+    }
+]
