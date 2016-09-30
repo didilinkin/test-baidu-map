@@ -129,35 +129,6 @@
 .house .inner .sec07>ul>li p{ height:20px; line-height:20px; color:#333; font-size:14px; text-align:center;}
 .house .inner .sec07>ul>li p.sm{ height:20px; line-height:20px; font-size:12px; color:#b2b2b2; margin-top:5px;}
 .house .inner .sec07>ul>li ul{ padding:10px 0 10px 78px;}
-.house .inner .sec07>ul>li ul li{ color:#9a9a9a; font-size:14px; line-height:1.7; list-style-type:disc;}
+.house .inner .sec07>ul>li ul li{ color:#9a9a9a; font-size:14px; line-height:1.7; list-style-type:disc; overflow:hidden; height:23px;}
 .house .inner .sec07>ul>li a{ display:block; width:92px; height:22px; line-height:22px; border-radius:100px; background:#a09f9f; color:#fff; margin:0 auto; font-size:12px; text-align:center;}
 .house .inner .sec07>ul>li a.active{ background:#2f2f2f;}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

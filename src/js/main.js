@@ -190,22 +190,27 @@ var local =  new BMap.LocalSearch(map, {
 function remove_overlay(){
 	map.clearOverlays();
 }
+
 // 隐藏覆盖物（百度地图方法）
 function hideOver(){
     circle.hide();
 }
+
 //（搜索）函数    检索功能 将在 下面API输出函数当中调用  参数相同
 function searchFunction(outputKeyword){
-    remove_overlay();
+    hideOver();
     map.addOverlay(circle);
     local.searchNearby(outputKeyword,mPoint,900);
 }
 
-// 自定义 单独标记函数（百度方法）
+// 单独标记函数（百度方法）
 function oneAddOverlay(PointLng,PointLat) {
+    // 清理地图上面所有点
+    // map.clearOverlays();
     var marker = new BMap.Marker(new BMap.Point(PointLng,PointLat));
     map.addOverlay(marker);
 }
+
 
 // 检索关键词 本地API文字输出(将其封在一个构造函数中)
 function OutputList(outputKeyword,Ul){
@@ -294,13 +299,17 @@ function aOutputList(outputKeyword,Ul,Pnum){
 	var options = {
         // 搜索整个地图-(结果)
 		onSearchComplete: function(results){
+            var length = 4;
+            if (results.getCurrentNumPois < 4) {
+                length = results.getCurrentNumPois;
+            }
 			// 判断状态是否正确
 			if (local.getStatus() == BMAP_STATUS_SUCCESS){
 				var s = [];
                 // var LiList = document.createElement("li");
                 // var ResultTitle = document.createTextNode("text");
-                // 结果.获取当前数字POIS  getResults() 执行5次内容
-				for (var i = 0; i < 5; i ++){
+                // 结果.获取当前数字POIS  getResults() 执行4次内容
+				for (var i = 0; i < length; i ++){
                     var s = new Object();
                     // s.push(results.getPoi(i).title);
                     // results.getPoi(i).point 坐标信息
@@ -316,6 +325,10 @@ function aOutputList(outputKeyword,Ul,Pnum){
 
                     var UlList = document.getElementById(Ul);
                     var LiList = document.createElement("li");
+                    LiList.setAttribute(
+                        "onclick",
+                        "oneAddOverlay('" + s.pointLng + "','" + s.pointLat + "')"
+                    );
 
 
                     var text = s.title;
@@ -333,7 +346,6 @@ function aOutputList(outputKeyword,Ul,Pnum){
                     // 将　LiList 节点　加入到　UlList 节点
 	                UlList.appendChild(LiList);
 				}
-                console.log(s.num);
                 // 将数字值加入页面
                 PNum.appendChild(numnode);
 			}
