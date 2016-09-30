@@ -202,13 +202,16 @@ function searchFunction(outputKeyword){
 
 
 // 检索关键词 本地API文字输出(将其封在一个构造函数中)
-function OutputList(outputKeyword){
+function OutputList(outputKeyword,Ul){
+
 	var options = {
         // 搜索整个地图-(结果)
 		onSearchComplete: function(results){
 			// 判断状态是否正确
 			if (local.getStatus() == BMAP_STATUS_SUCCESS){
-				// var s = [];
+				var s = [];
+                // var LiList = document.createElement("li");
+                // var ResultTitle = document.createTextNode("text");
                 // 结果.获取当前数字POIS  getResults() 执行5次内容
 				for (var i = 0; i < 5; i ++){
                     var s = new Object();
@@ -217,12 +220,21 @@ function OutputList(outputKeyword){
                     s.title = results.getPoi(i).title;
                     s.pointLng = results.getPoi(i).point.lng;
                     s.pointLat = results.getPoi(i).point.lat;
+
+                    // 绑定输出的DIV ID
+
+                    var UlList = document.getElementById(Ul);
+                    var LiList = document.createElement("li");
+                    var text = s.title;
+                    var textnode=document.createTextNode(text);
+
+                    // 将　文本节点　加入到　LiList 节点
+                    LiList.appendChild(textnode);
+                    // 将　LiList 节点　加入到　UlList 节点
+	                UlList.appendChild(LiList);
+                    // 循环输出　５次
                     console.log(s);
 				}
-                // 绑定输出的DIV ID
-                var UlList = document.getElementById("List-traffic");
-                var LiList = document.createElement("li");
-	            var ResultTitle = document.createTextNode("text");
 			}
 		}
 	};
@@ -246,25 +258,32 @@ searchHousing.onclick=function(){
 
 // 控件绑定点击事件(交通)
 searchTraffic.onclick = function(){
-    OutputList("公交站");
+    OutputList("公交站","List-traffic");
 };
 // 控件绑定点击事件(快餐)
 searchSnack.onclick = function(){
-    OutputList("快餐");
+    OutputList("快餐","List-snack");
 };
 // 控件绑定点击事件(餐厅)
 searchRestaurant.onclick = function(){
-    OutputList("餐厅");
+    OutputList("餐厅","List-restaurant");
 
 };
 // 控件绑定点击事件(银行)
 searchBank.onclick = function(){
-    OutputList("银行");
+    OutputList("银行","List-bank");
 };
 // 控件绑定点击事件(酒店)
 searchHotel.onclick = function(){
-    OutputList("酒店");
+    OutputList("酒店","List-hotel");
 };
+
+
+
+// 自动加载事件
+function reloadList() {
+    var allUlListId = [""];
+}
 
 
 
@@ -455,7 +474,6 @@ function addBuilding(ObjGroup){
 
 
 
-// 页面加载时 向list列表添加内容事件()
 
 
 

@@ -31,6 +31,9 @@ ulList.appendChild(liList);
 `s.pointLng` : `results.getPoi(i).point.lng`  存储result.坐标.经度信息
 
 `s.pointLat` : `results.getPoi(i).point.lat`  存储result.坐标.纬度信息
+
+`reloadList()` : 自动加载事件（页面一刷新　就执行的事件，添加５个list列表等一系列任务）　函数
+
 ***
 
 # 百度地图方法
