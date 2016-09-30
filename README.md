@@ -34,11 +34,15 @@ ulList.appendChild(liList);
 
 `reloadList()` : 自动加载事件（页面一刷新　就执行的事件，添加５个list列表等一系列任务）　函数
 
+`OneMarker` ：自定义标记对象（坐标经度，坐标纬度） 构造函数
+
 ***
 
 # 百度地图方法
 
 `local.searchNearby([搜索内容对象],[中心点的坐标],[范围米数])`
+
+`results.getCurrentNumPois(i)` : 获取本地检索后获得的可控范围内的点数数量；
 
 以`中心点`检索附近`范围`的`内容对象`
 ### 示例:

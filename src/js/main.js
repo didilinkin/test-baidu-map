@@ -185,14 +185,15 @@ var local =  new BMap.LocalSearch(map, {
         autoViewport: false
     }
 });
-// 本地.搜索附近（[参数1：名称],[标点位置],[圆心距离]）
-local.searchNearby('酒店',mPoint,1000);
 
 //清除覆盖物(方法)
 function remove_overlay(){
 	map.clearOverlays();
 }
-
+// 隐藏覆盖物（百度地图方法）
+function hideOver(){
+    circle.hide();
+}
 //（搜索）函数    检索功能 将在 下面API输出函数当中调用  参数相同
 function searchFunction(outputKeyword){
     remove_overlay();
@@ -200,10 +201,14 @@ function searchFunction(outputKeyword){
     local.searchNearby(outputKeyword,mPoint,900);
 }
 
+// 自定义 单独标记函数（百度方法）
+function oneAddOverlay(PointLng,PointLat) {
+    var marker = new BMap.Marker(new BMap.Point(PointLng,PointLat));
+    map.addOverlay(marker);
+}
 
 // 检索关键词 本地API文字输出(将其封在一个构造函数中)
 function OutputList(outputKeyword,Ul){
-
 	var options = {
         // 搜索整个地图-(结果)
 		onSearchComplete: function(results){
@@ -232,8 +237,6 @@ function OutputList(outputKeyword,Ul){
                     LiList.appendChild(textnode);
                     // 将　LiList 节点　加入到　UlList 节点
 	                UlList.appendChild(LiList);
-                    // 循环输出　５次
-                    console.log(s);
 				}
 			}
 		}
@@ -280,9 +283,69 @@ searchHotel.onclick = function(){
 
 
 
-// 自动加载事件
-function reloadList() {
-    var allUlListId = [""];
+
+
+
+
+
+// 检索关键词 本地API文字输出(aOutputList 只输出list不打点)
+function aOutputList(outputKeyword,Ul,Pnum){
+
+	var options = {
+        // 搜索整个地图-(结果)
+		onSearchComplete: function(results){
+			// 判断状态是否正确
+			if (local.getStatus() == BMAP_STATUS_SUCCESS){
+				var s = [];
+                // var LiList = document.createElement("li");
+                // var ResultTitle = document.createTextNode("text");
+                // 结果.获取当前数字POIS  getResults() 执行5次内容
+				for (var i = 0; i < 5; i ++){
+                    var s = new Object();
+                    // s.push(results.getPoi(i).title);
+                    // results.getPoi(i).point 坐标信息
+                    s.title = results.getPoi(i).title;
+                    s.pointLng = results.getPoi(i).point.lng;
+                    s.pointLat = results.getPoi(i).point.lat;
+                    s.num = results.getCurrentNumPois(i);
+
+
+                    // 绑定输出的DIV ID
+                    // 获取数值节点位置
+                    var PNum = document.getElementById(Pnum);
+
+                    var UlList = document.getElementById(Ul);
+                    var LiList = document.createElement("li");
+
+
+                    var text = s.title;
+                    // 将数值传给num变量
+                    var num = s.num;
+
+
+                    var textnode=document.createTextNode(text);
+                    // 数值
+                    var numnode=document.createTextNode(num);
+
+
+                    // 将　文本节点　加入到　LiList 节点
+                    LiList.appendChild(textnode);
+                    // 将　LiList 节点　加入到　UlList 节点
+	                UlList.appendChild(LiList);
+				}
+                console.log(s.num);
+                // 将数字值加入页面
+                PNum.appendChild(numnode);
+			}
+		}
+	};
+	var local = new BMap.LocalSearch(map, options);
+    // 因为是搜索附近 所以不能使用local.search()方法,
+    // 而应该是local.searchNearby();方法加以控制          local.searchNearby('酒店',mPoint,1000);
+	local.searchNearby(outputKeyword,mPoint,900);
+
+    // // 调用上面的 本地检索 然后在地图标记的函数 传入参数
+    // searchFunction(outputKeyword);
 }
 
 
@@ -290,6 +353,83 @@ function reloadList() {
 
 
 
+
+
+
+
+
+// 自动加载事件
+function reloadList() {
+    var allUlListId = [
+        {
+            title: "公交站",                 // 标题
+            ulId: "List-traffic",           // 绑定的ulID
+            pId: "Num-traffic"
+
+        },
+        {
+            title: "快餐",                    // 标题
+            ulId: "List-snack",              // 绑定的ulID
+            pId: "Num-snack"
+        },
+        {
+            title: "餐厅",                    // 标题
+            ulId: "List-restaurant",         // 绑定的ulID
+            pId: "Num-restaurant"
+        },
+        {
+            title: "银行",                    // 标题
+            ulId: "List-bank",               // 绑定的ulID
+            pId: "Num-bank"
+        },
+        {
+            title: "酒店",                    // 标题
+            ulId: "List-hotel",              // 绑定的ulID
+            pId: "Num-hotel"
+        }
+    ];
+    for (var i = 0; i < allUlListId.length; i++) {
+        // 输出list内容(只输出 不打点 ，所以使用的是aOutputList函数)
+        aOutputList(allUlListId[i].title,allUlListId[i].ulId,allUlListId[i].pId);
+    }
+    // 清楚覆盖物
+    remove_overlay();
+    // hideOver();
+    // 页面加载完之后添加中心点坐标(华润大厦)
+    oneAddOverlay(120.3845,36.071702);
+}
+
+
+
+
+
+
+// 自动执行　５个列表加载事件
+reloadList();
+
+var Btntraffic = document.getElementById("OutputList-traffic");
+var Btnsnack = document.getElementById("OutputList-snack");
+var Btnrestaurant = document.getElementById("OutputList-restaurant");
+var Btnbank = document.getElementById("OutputList-bank");
+var Btnhotel = document.getElementById("OutputList-hotel");
+
+
+// 绑定列表上的按钮按键
+Btntraffic.onclick = function(){
+    OutputList("公交站","List-traffic");
+};
+Btnsnack.onclick = function(){
+    OutputList("快餐","List-snack");
+};
+Btnrestaurant.onclick = function(){
+    OutputList("餐厅","List-restaurant");
+};
+Btnbank.onclick = function(){
+    OutputList("银行","List-bank");
+};
+Btnhotel.onclick = function(){
+    OutputList("酒店","List-hotel");
+};
 
 
 
