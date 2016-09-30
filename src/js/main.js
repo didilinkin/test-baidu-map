@@ -198,7 +198,7 @@ function hideOver(){
 
 //（搜索）函数    检索功能 将在 下面API输出函数当中调用  参数相同
 function searchFunction(outputKeyword){
-    hideOver();
+    remove_overlay();
     map.addOverlay(circle);
     local.searchNearby(outputKeyword,mPoint,900);
 }
@@ -602,20 +602,20 @@ ComplexCustomOverlay.prototype.draw = function(){
   this._div.style.top  = pixel.y - 30 + "px";
 }
 
-// Ajax添加单个自定义覆盖物
-function addBuilding(ObjGroup){
-    for (var i = 0; i < ObjGroup.length; i++) {
-        var Arr = new Object();
-        Arr = ObjGroup[i];
-        // 拼接属性文字内容
-        var text = "￥" + Arr.priceBeginning + Arr.beginUnit +  "起",
-            mouseoverTxt = Arr.name + " " + Arr.resourceAmount + "套" ;
-        var myCompOverlay = new ComplexCustomOverlay(
-            new BMap.Point(Arr.longitude,Arr.latitude),text,mouseoverTxt
-        );
-        map.addOverlay(myCompOverlay);
-    }
-};
+// // Ajax添加单个自定义覆盖物
+// function addBuilding(ObjGroup){
+//     for (var i = 0; i < ObjGroup.length; i++) {
+//         var Arr = new Object();
+//         Arr = ObjGroup[i];
+//         // 拼接属性文字内容
+//         var text = "￥" + Arr.priceBeginning + Arr.beginUnit +  "起",
+//             mouseoverTxt = Arr.name + " " + Arr.resourceAmount + "套" ;
+//         var myCompOverlay = new ComplexCustomOverlay(
+//             new BMap.Point(Arr.longitude,Arr.latitude),text,mouseoverTxt
+//         );
+//         map.addOverlay(myCompOverlay);
+//     }
+// };
 
 
 
