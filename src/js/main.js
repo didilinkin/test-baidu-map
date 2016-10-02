@@ -18,6 +18,7 @@ setTimeout(function(){
    map.enableDragging();   //两秒后开启拖拽
    //map.enableInertialDragging();   //3.5秒后开启惯性拖拽
 }, 3500);
+
 // 创建标点,层级(15级别)
 map.centerAndZoom(mPoint,15);
 
@@ -104,47 +105,17 @@ function aOutputList(outputKeyword,Ul,Pnum){
 	local.searchNearby(outputKeyword,mPoint,900);
 }
 
-// 页面加载事件 内容数组
-function reloadList() {
-    var allUlListId = [
-        {
-            title: "公交站",                 // 标题
-            ulId: "List-traffic",           // 绑定的ulID
-            pId: "Num-traffic"
 
-        },
-        {
-            title: "快餐",                    // 标题
-            ulId: "List-snack",              // 绑定的ulID
-            pId: "Num-snack"
-        },
-        {
-            title: "餐厅",                    // 标题
-            ulId: "List-restaurant",         // 绑定的ulID
-            pId: "Num-restaurant"
-        },
-        {
-            title: "银行",                    // 标题
-            ulId: "List-bank",               // 绑定的ulID
-            pId: "Num-bank"
-        },
-        {
-            title: "酒店",                    // 标题
-            ulId: "List-hotel",              // 绑定的ulID
-            pId: "Num-hotel"
-        }
-    ];
-    for (var i = 0; i < allUlListId.length; i++) {
-        // 输出list内容(只输出 不打点 ，所以使用的是aOutputList函数)
-        aOutputList(allUlListId[i].title,allUlListId[i].ulId,allUlListId[i].pId);
-    }
-    // 清楚覆盖物
-    remove_overlay();
-    // hideOver();
-    // 页面加载完之后添加中心点坐标(华润大厦)
-    oneAddOverlay(120.3845,36.071702);
-}
-reloadList();
+
+
+
+
+
+
+
+
+
+
 
 
 /////////////////
@@ -574,3 +545,44 @@ ComplexCustomOverlay.prototype.draw = function(){
 //         map.addOverlay(myCompOverlay);
 //     }
 // };
+// 自动加载事件
+function reloadList() {
+    var allUlListId = [
+        {
+            title: "公交站",                 // 标题
+            ulId: "List-traffic",           // 绑定的ulID
+            pId: "Num-traffic"
+
+        },
+        {
+            title: "快餐",                    // 标题
+            ulId: "List-snack",              // 绑定的ulID
+            pId: "Num-snack"
+        },
+        {
+            title: "餐厅",                    // 标题
+            ulId: "List-restaurant",         // 绑定的ulID
+            pId: "Num-restaurant"
+        },
+        {
+            title: "银行",                    // 标题
+            ulId: "List-bank",               // 绑定的ulID
+            pId: "Num-bank"
+        },
+        {
+            title: "酒店",                    // 标题
+            ulId: "List-hotel",              // 绑定的ulID
+            pId: "Num-hotel"
+        }
+    ];
+    for (var i = 0; i < allUlListId.length; i++) {
+        // 输出list内容(只输出 不打点 ，所以使用的是aOutputList函数)
+        aOutputList(allUlListId[i].title,allUlListId[i].ulId,allUlListId[i].pId);
+    }
+    // 清楚覆盖物
+    remove_overlay();
+    // circle.hide();
+    // 页面加载完之后添加中心点坐标(华润大厦)
+    oneAddOverlay(120.3845,36.071702);
+}
+reloadList();

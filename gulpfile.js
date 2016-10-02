@@ -37,9 +37,10 @@ var gulp = require('gulp'), 						// gulp
 
 	// JS清理
 	gulp.task('minifyjs', function() {
-        return gulp.src('src/js/*.js')      	//需要操作的文件
-            // .pipe(concat('main.js'))    		//合并所有js到main.js
-			// .pipe(uglify())    					//压缩
+		// 按顺序加载 (暂时保有main部分，分拆后 删除这部分引用)
+        return gulp.src(['./src/js/init.js', './src/js/var.js', './src/js/function.js', './src/js/start.js', './src/js/main.js', './src/js/jquery-script.js'])
+            .pipe(concat('main.js'))    		//合并所有js到main.js
+			// .pipe(uglify())    				//压缩
 			.pipe(rename({suffix: '.min'})) 	//rename压缩后的文件名
             .pipe(gulp.dest('dist/js'))       	//输出到文件夹
 			// 刷新页面

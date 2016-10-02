@@ -56,3 +56,13 @@ local.searchNearby(outputKeyword,mPoint,900);
 [API说明地址](http://developer.baidu.com/map/reference/index.php?title=Class:%E6%9C%8D%E5%8A%A1%E7%B1%BB/LocalResultPoi)
 
 `resultsList` 检索出来的对象列表集合
+
+***
+
+开发环境js加载顺序说明:
+1.  `init.js`   百度初始化内容
+2.  `var.js`    声明变量部分
+3.  `function`  函数部分
+4.  `start`     页面开始执行
+
+jquey-script    jQuery脚本
