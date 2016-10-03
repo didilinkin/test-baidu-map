@@ -6,14 +6,12 @@ var circle = new BMap.Circle(mPoint,1000,{
     fillOpacity: 0.07, 							// 填充透明度
     strokeOpacity: 1							// 画笔透明度
 });
-
 var local =  new BMap.LocalSearch(map, {
     renderOptions: {
         map: map,
         autoViewport: false
     }
 });
-
 var Btntraffic = document.getElementById("OutputList-traffic");
 var Btnsnack = document.getElementById("OutputList-snack");
 var Btnrestaurant = document.getElementById("OutputList-restaurant");

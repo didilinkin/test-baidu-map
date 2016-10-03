@@ -1,7 +1,4 @@
-/////////////////
-/// 自定义控件 ///
-/////////////////
-// 定义一个控件类(右上角 筛选)
+// 自定义控件(右上角 筛选)
 function ulListControl(){
     // 默认停靠位置和偏移量
     this.defaultAnchor = BMAP_ANCHOR_TOP_LEFT;
@@ -10,7 +7,6 @@ function ulListControl(){
 // 通过JavaScript的prototype（原型）属性继承于BMap.Control
 ulListControl.prototype = new BMap.Control();
 // 自定义控件必须实现自己的initialize（初始化）方法,并且将控件的DOM元素返回
-// 在本方法中创建个div元素作为控件的容器,并将其添加到地图容器中
 ulListControl.prototype.initialize = function(map){
     // 创建一个DOM元素
     var ul = document.createElement("ul");
@@ -20,7 +16,6 @@ ulListControl.prototype.initialize = function(map){
     // 将li内容创建为数组
     var aText = ["周边房源", "交通","快餐","餐厅","银行","酒店"];
     var aIdName = ["housing", "traffic","snack","restaurant","bank","hotel"];
-
     // 循环li标签
     for (var i=0; i<6; i++){
         li = document.createElement("li");
@@ -34,51 +29,39 @@ ulListControl.prototype.initialize = function(map){
         ul.appendChild(li);
         li.appendChild(a);
     }
-
     // 添加DOM元素到地图中
     map.getContainer().appendChild(ul);
     // 将DOM元素返回
     return ul;
 }
-
-///////////////////////////////
-//// 将6个本地检索控件 加入地图////
-///////////////////////////////
+//// 将6个本地检索控件 加入地图
 var myUlListControl = new ulListControl();
-
-
 //清除覆盖物(方法)
 function remove_overlay(){
 	map.clearOverlays();
 }
-
 // 隐藏覆盖物（百度地图方法）
 function hideOver(){
     circle.hide();
 }
-
 //（搜索）函数    检索功能 将在 下面API输出函数当中调用  参数相同
 function searchFunction(outputKeyword){
     remove_overlay();
     map.addOverlay(circle);
     local.searchNearby(outputKeyword,mPoint,900);
 }
-
 // 单独标记函数（百度方法）
 function oneAddOverlay(PointLng,PointLat) {
     // 清理地图上面所有点
     map.clearOverlays();
-    var marker = new BMap.Marker(new BMap.Point(PointLng,PointLat));
-    map.addOverlay(marker);
+    var marker2 = new BMap.Marker(new BMap.Point(PointLng,PointLat),{icon:myIcon});  // 创建标注
+	map.addOverlay(marker2);              // 将标注添加到地图中
 }
-
-
 function OutputListBtn(BtnId){
     var aBtn = $("#"+BtnId);
     $(".output--list a").removeClass("active");
     aBtn.addClass("active");
 }
-
 // 检索关键词 本地API文字输出(将其封在一个构造函数中)
 function OutputList(outputKeyword,Ul){
 	var options = {
@@ -87,49 +70,30 @@ function OutputList(outputKeyword,Ul){
 			// 判断状态是否正确
 			if (local.getStatus() == BMAP_STATUS_SUCCESS){
 				var s = [];
-                // var LiList = document.createElement("li");
-                // var ResultTitle = document.createTextNode("text");
-                // 结果.获取当前数字POIS  getResults() 执行5次内容
 				for (var i = 0; i < 5; i ++){
                     var s = new Object();
-                    // s.push(results.getPoi(i).title);
-                    // results.getPoi(i).point 坐标信息
                     s.title = results.getPoi(i).title;
                     s.pointLng = results.getPoi(i).point.lng;
                     s.pointLat = results.getPoi(i).point.lat;
-
-                    // 绑定输出的DIV ID
-
                     var UlList = document.getElementById(Ul);
                     var LiList = document.createElement("li");
                     var text = s.title;
                     var textnode=document.createTextNode(text);
-
-                    // // 将　文本节点　加入到　LiList 节点
-                    // LiList.appendChild(textnode);
-                    // // 将　LiList 节点　加入到　UlList 节点
-	                // UlList.appendChild(LiList);
 				}
 			}
 		}
 	};
 	var local = new BMap.LocalSearch(map, options);
     // 因为是搜索附近 所以不能使用local.search()方法,
-    // 而应该是local.searchNearby();方法加以控制          local.searchNearby('酒店',mPoint,1000);
 	local.searchNearby(outputKeyword,mPoint,900);
-
     // 调用上面的 本地检索 然后在地图标记的函数 传入参数
     searchFunction(outputKeyword);
 }
-
-
-
 // 添加自定义覆盖物
 function ComplexCustomOverlay(point,text,mouseoverText,code,name,longitude,latitude,resourceAmount,priceBeginning,beginUnit){
   this._point = point;
   this._text = text;
   this._overText = mouseoverText;
-  // 新加
   this.code = code;                         // 楼盘编码
   this.name = name;                         // 楼盘名称
   this.longitude = longitude;               // 地理经度
@@ -157,7 +121,6 @@ ComplexCustomOverlay.prototype.initialize = function(map){
   div.appendChild(span);
   span.appendChild(document.createTextNode(this._text));
   var that = this;
-
   var arrow = this._arrow = document.createElement("div");
   arrow.style.background = "url(http://map.baidu.com/fwmap/upload/r/map/fwmap/static/house/images/label.png) no-repeat";
   arrow.style.position = "absolute";
@@ -167,23 +130,19 @@ ComplexCustomOverlay.prototype.initialize = function(map){
   arrow.style.left = "10px";
   arrow.style.overflow = "hidden";
   div.appendChild(arrow);
-
   div.onmouseover = function(){
     this.style.backgroundColor = "#6BADCA";
     this.style.borderColor = "#0000ff";
     this.getElementsByTagName("span")[0].innerHTML = that._overText;
     arrow.style.backgroundPosition = "0px -20px";
   }
-
   div.onmouseout = function(){
     this.style.backgroundColor = "#EE5D5B";
     this.style.borderColor = "#BC3B3A";
     this.getElementsByTagName("span")[0].innerHTML = that._text;
     arrow.style.backgroundPosition = "0px 0px";
   }
-
   map.getPanes().labelPane.appendChild(div);
-
   return div;
 }
 ComplexCustomOverlay.prototype.draw = function(){

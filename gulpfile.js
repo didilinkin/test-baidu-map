@@ -49,13 +49,13 @@ var gulp = require('gulp'), 						// gulp
 
 	// 图片压缩
 	gulp.task('imagemin',function(){
-		gulp.src('./src/img/*.{png,jpg,gif,ico}')
+		gulp.src('./src/images/*.{png,jpg,gif,ico}')
 			.pipe(imagemin({
 				progressive: true,
 				svgPlugins: [{removeViewBox: false}],
 				use: [pngquant()]
 			}))
-			.pipe(gulp.dest('./dist/img/'));
+			.pipe(gulp.dest('./dist/images/'));
 	});
 
 	//Gulp sever服务器

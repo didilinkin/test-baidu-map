@@ -2,8 +2,6 @@
 map.addControl(myUlListControl);
 //// 添加覆盖物
 map.addOverlay(circle);
-
-
 // 绑定列表上的按钮按键
 Btntraffic.onclick = function(){
     OutputList("公交站","List-traffic");
@@ -25,8 +23,6 @@ Btnhotel.onclick = function(){
     OutputList("酒店","List-hotel");
     OutputListBtn("OutputList-hotel");
 };
-
-
 // 赋值命名
 searchHousing = document.getElementById("search-housing");
 searchTraffic = document.getElementById("search-traffic");
@@ -34,49 +30,44 @@ searchSnack = document.getElementById("search-snack");
 searchRestaurant = document.getElementById("search-restaurant");
 searchBank = document.getElementById("search-bank");
 searchHotel = document.getElementById("search-hotel");
-
 // 绑定事件(附近房源)————自定义房源数据
 searchHousing.onclick=function(){
     remove_overlay();       //清除覆盖物
     map.addOverlay(circle);
-    // addBuilding(buildingMarker); // 使用ajax事件  暂时注释
 };
-
 // 控件绑定点击事件(交通,快餐,餐厅,银行,酒店)
 searchTraffic.onclick = function(){OutputList("公交站","List-traffic");};
 searchSnack.onclick = function(){OutputList("快餐","List-snack");};
 searchRestaurant.onclick = function(){OutputList("餐厅","List-restaurant");};
 searchBank.onclick = function(){OutputList("银行","List-bank");};
 searchHotel.onclick = function(){OutputList("酒店","List-hotel");};
-
-
 // 页面打开时执行的任务,输出list列表内容
 function reloadList() {
     var allUlListId = [
         {
-            title: "公交站",                 // 标题
-            ulId: "List-traffic",           // 绑定的ulID
+            title: "公交站",
+            ulId: "List-traffic",
             pId: "Num-traffic"
 
         },
         {
-            title: "快餐",                    // 标题
-            ulId: "List-snack",              // 绑定的ulID
+            title: "快餐",
+            ulId: "List-snack",
             pId: "Num-snack"
         },
         {
-            title: "餐厅",                    // 标题
-            ulId: "List-restaurant",         // 绑定的ulID
+            title: "餐厅",
+            ulId: "List-restaurant",
             pId: "Num-restaurant"
         },
         {
-            title: "银行",                    // 标题
-            ulId: "List-bank",               // 绑定的ulID
+            title: "银行",
+            ulId: "List-bank",
             pId: "Num-bank"
         },
         {
-            title: "酒店",                    // 标题
-            ulId: "List-hotel",              // 绑定的ulID
+            title: "酒店",
+            ulId: "List-hotel",
             pId: "Num-hotel"
         }
     ];
@@ -86,7 +77,6 @@ function reloadList() {
     }
     // 清楚覆盖物
     remove_overlay();
-    // 页面加载完之后添加中心点坐标(华润大厦)
     // 列表加载事件——检索关键词,文字输出(只输出list不打点)
     function aOutputList(outputKeyword,Ul,Pnum){
         var options = {
@@ -99,41 +89,26 @@ function reloadList() {
     			// 判断状态是否正确
     			if (local.getStatus() == BMAP_STATUS_SUCCESS){
     				var s = [];
-                    // var LiList = document.createElement("li");
-                    // var ResultTitle = document.createTextNode("text");
                     // 结果.获取当前数字POIS  getResults() 执行4次内容
     				for (var i = 0; i < length; i ++){
                         var s = new Object();
-                        // s.push(results.getPoi(i).title);
-                        // results.getPoi(i).point 坐标信息
                         s.title = results.getPoi(i).title;
                         s.pointLng = results.getPoi(i).point.lng;
                         s.pointLat = results.getPoi(i).point.lat;
                         s.num = results.getCurrentNumPois(i);
-
-
-                        // 绑定输出的DIV ID
                         // 获取数值节点位置
                         var PNum = document.getElementById(Pnum);
-
                         var UlList = document.getElementById(Ul);
                         var LiList = document.createElement("li");
                         LiList.setAttribute(
                             "onclick",
                             "oneAddOverlay('" + s.pointLng + "','" + s.pointLat + "')"
                         );
-
-
                         var text = s.title;
-                        // 将数值传给num变量
                         var num = s.num;
-
-
                         var textnode=document.createTextNode(text);
                         // 数值
                         var numnode=document.createTextNode(num);
-
-
                         // 将　文本节点　加入到　LiList 节点
                         LiList.appendChild(textnode);
                         // 将　LiList 节点　加入到　UlList 节点

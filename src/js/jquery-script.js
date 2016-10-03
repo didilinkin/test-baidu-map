@@ -1,37 +1,4 @@
 $(document).ready(function(){
-    var buildingMarker = [
-        // 市政府
-        {
-            code: "A001",                   // 编码
-            name: "市政府",                  // 楼盘名称
-            longitude: "120.389014",        // 地理经度
-            latitude: "36.073178",          // 地理纬度
-            resourceAmount: 10,             // 套数
-            priceBeginning: 11,             // 价格起点
-            beginUnit: ""                   // 价格起点单位
-        },
-        // 世贸中心
-        {
-            code: "A002",
-            name: "世贸中心",
-            longitude: "120.383566",
-            latitude: "36.06843",
-            resourceAmount: 20,
-            priceBeginning: 21,
-            beginUnit: ""
-        },
-        // 亚麦国际中心
-        {
-            code: "A003",
-            name: "亚麦国际中心",
-            longitude: "120.383602",
-            latitude: "36.070447",
-            resourceAmount: 30,
-            priceBeginning: 31,
-            beginUnit: ""
-        }
-    ]
-
     $("#search-housing").click(function(){
         $.ajax({
             type: "POST",                               //请求方式
@@ -42,13 +9,8 @@ $(document).ready(function(){
                 lng : mPoint.lng,
                 lat : mPoint.lat
             },
-            cache:false,
-            // beforeSend: function() {
-            //     //请求前的处理
-            // },
             success: function(backDate) {
                 //请求成功时处理
-                // var dataObj = eval("("+backDate+")");               // 转成对象
                 var dataObj = backDate;
                 $.each(dataObj,function(i, item) {
                     // 拼接属性文字内容
