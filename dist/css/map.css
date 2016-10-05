@@ -33,8 +33,12 @@
     background: #333;
     color: #FFF; }
 
-ul#List-traffic li, ul#List-snack li, ul#List-restaurant li, ul#List-bank li, ul#List-hotel li {
-  cursor: pointer; }
+ul#List-traffic, ul#List-snack, ul#List-restaurant, ul#List-bank, ul#List-hotel {
+  padding: 10px 0 10px 48px; }
+  ul#List-traffic li, ul#List-snack li, ul#List-restaurant li, ul#List-bank li, ul#List-hotel li {
+    cursor: pointer; }
+    ul#List-traffic li:hover, ul#List-snack li:hover, ul#List-restaurant li:hover, ul#List-bank li:hover, ul#List-hotel li:hover {
+      color: #3A3F44; }
 
 a#OutputList-traffic, a#OutputList-snack, a#OutputList-restaurant, a#OutputList-bank, a#OutputList-hotel {
   cursor: pointer; }
