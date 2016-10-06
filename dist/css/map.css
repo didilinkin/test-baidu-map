@@ -27,21 +27,12 @@
     list-style-type: none;
     border: none;
     border-radius: 15px;
-    background: #FFF;
+    background-color: #FFF;
     cursor: pointer; }
   #ulList li:hover {
-    background: #333;
-    color: #FFF; }
-
-ul#List-traffic, ul#List-snack, ul#List-restaurant, ul#List-bank, ul#List-hotel {
-  padding: 10px 0 10px 48px; }
-  ul#List-traffic li, ul#List-snack li, ul#List-restaurant li, ul#List-bank li, ul#List-hotel li {
-    cursor: pointer; }
-    ul#List-traffic li:hover, ul#List-snack li:hover, ul#List-restaurant li:hover, ul#List-bank li:hover, ul#List-hotel li:hover {
-      color: #3A3F44; }
-
-a#OutputList-traffic, a#OutputList-snack, a#OutputList-restaurant, a#OutputList-bank, a#OutputList-hotel {
-  cursor: pointer; }
+    background-color: #333; }
+    #ulList li:hover a {
+      color: #FFF; }
 
 .BMap_bubble_title {
   font-weight: bold;
@@ -51,3 +42,68 @@ a#OutputList-traffic, a#OutputList-snack, a#OutputList-restaurant, a#OutputList-
 .BMap_bubble_content {
   margin-top: 1rem;
   color: #9a9a9a; }
+
+a#search-traffic:hover {
+  color: #fff; }
+
+a#OutputList-traffic {
+  cursor: pointer; }
+
+ul#List-traffic {
+  padding: 10px 0 10px 48px; }
+  ul#List-traffic li {
+    cursor: pointer; }
+    ul#List-traffic li:hover {
+      color: #3A3F44; }
+
+a#search-snack:hover {
+  color: #fff; }
+
+a#OutputList-snack {
+  cursor: pointer; }
+
+ul#List-snack {
+  padding: 10px 0 10px 48px; }
+  ul#List-snack li {
+    cursor: pointer; }
+    ul#List-snack li:hover {
+      color: #3A3F44; }
+
+a#search-restaurant:hover {
+  color: #fff; }
+
+a#OutputList-restaurant {
+  cursor: pointer; }
+
+ul#List-restaurant {
+  padding: 10px 0 10px 48px; }
+  ul#List-restaurant li {
+    cursor: pointer; }
+    ul#List-restaurant li:hover {
+      color: #3A3F44; }
+
+a#search-bank:hover {
+  color: #fff; }
+
+a#OutputList-bank {
+  cursor: pointer; }
+
+ul#List-bank {
+  padding: 10px 0 10px 48px; }
+  ul#List-bank li {
+    cursor: pointer; }
+    ul#List-bank li:hover {
+      color: #3A3F44; }
+
+a#search-hotel:hover {
+  color: #fff; }
+
+a#OutputList-hotel {
+  cursor: pointer; }
+
+ul#List-hotel {
+  padding: 10px 0 10px 48px; }
+  ul#List-hotel li {
+    cursor: pointer; }
+    ul#List-hotel li:hover {
+      color: #3A3F44; }

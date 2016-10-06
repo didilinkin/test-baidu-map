@@ -27,21 +27,12 @@
         list-style-type: none
         border: none
         border-radius: 15px
-        background: #FFF
+        background-color: #FFF
         cursor: pointer
     li:hover
-        background: #333
-        color: #FFF
-
-// ulList新加样式
-ul#List-traffic,ul#List-snack,ul#List-restaurant,ul#List-bank,ul#List-hotel
-    padding: 10px 0 10px 48px
-    li
-        cursor: pointer
-        &:hover
-            color: #3A3F44
-a#OutputList-traffic,a#OutputList-snack,a#OutputList-restaurant,a#OutputList-bank,a#OutputList-hotel
-    cursor: pointer
+        background-color: #333
+        a
+            color: #FFF
 // 地图信息窗口样式
 .BMap_bubble_title
     font:
@@ -51,3 +42,18 @@ a#OutputList-traffic,a#OutputList-snack,a#OutputList-restaurant,a#OutputList-ban
 .BMap_bubble_content
     margin-top: 1rem
     color: #9a9a9a
+
+// ulList新加样式
+$list: (traffic,snack,restaurant,bank,hotel)
+@for $i from 0 to length($list)
+    a#search-#{nth($list, $i+1)}
+        &:hover
+            color: #fff
+    a#OutputList-#{nth($list, $i+1)}
+        cursor: pointer
+    ul#List-#{nth($list, $i+1)}
+        padding: 10px 0 10px 48px
+        li
+            cursor: pointer
+            &:hover
+                color: #3A3F44

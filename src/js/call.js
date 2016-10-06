@@ -18,6 +18,7 @@ map.addControl(new BMap.NavigationControl(
 setTimeout(function(){
     map.enableDragging();
 }, 3500);
-map.addOverlay(customMarker);   // 将自定义标注添加到地图中
 // 输出list列表内容
 reloadList();
+// 将自定义标注、自定义控件添加到地图中
+defaultCallLoad()
