@@ -42,3 +42,12 @@ ul#List-traffic, ul#List-snack, ul#List-restaurant, ul#List-bank, ul#List-hotel 
 
 a#OutputList-traffic, a#OutputList-snack, a#OutputList-restaurant, a#OutputList-bank, a#OutputList-hotel {
   cursor: pointer; }
+
+.BMap_bubble_title {
+  font-weight: bold;
+  font-size: 1.1rem;
+  line-height: 1.5rem; }
+
+.BMap_bubble_content {
+  margin-top: 1rem;
+  color: #9a9a9a; }

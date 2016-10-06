@@ -51,7 +51,7 @@ function reloadList() {
                         li.setAttribute("data-lat",liLat);
                         li.setAttribute("data-address",liAddress);
                         li.setAttribute("onmouseover","liOnmouseover(" + liLng + "," + liLat + ")");
-                        // li.setAttribute("onmouseover",li.style.display = 'none');
+                        li.setAttribute("onclick","liOnclick("+liLng+","+liLat+","+"\""+text+"\""+","+"\""+liAddress+"\""+")");
                         li.appendChild(textnode);
                         listUl.appendChild(li);
     				}
@@ -75,20 +75,56 @@ function clearMapAgainMarker(){
     map.clearOverlays();    // 清理地图上面所有点
     map.addOverlay(customMarker);      // 将中心标注   重新添加到地图中
 }
-
-// 单独标记（百度方法）
+var oneMarker = new BMap.Marker(mPoint);    // 定义全局变量
+// 单独标记(只标记不输出)
 function addMarker(PointLng,PointLat) {
     clearMapAgainMarker();          // 清空地图,重新打上中心自定义标记
     var oneMarker = new BMap.Marker(new BMap.Point(PointLng,PointLat));     // 单独标记的标记坐标
 	map.addOverlay(oneMarker);         // 将标注添加到地图中
+    // return oneMarker;
 }
 // list列表li 鼠标经过事件
 function liOnmouseover(liLng,liLat){
-    // 将坐标值输入 单独标记
-    addMarker(liLng,liLat);
+    addMarker(liLng,liLat);     // 将坐标值输入 单独标记
 }
 // list列表ul 鼠标移出事件
 function liOnmouseout(){
     clearMapAgainMarker();          // 清空地图,重新打上中心自定义标记
     customMarker.setAnimation(BMAP_ANIMATION_BOUNCE);     // 设置自定义标注 跳动
+    if (infoWindowMarker.point != mPoint) {
+        map.addOverlay(infoWindowMarker);      // 将中心标注   重新添加到地图中
+    }
+}
+function liOnclick(liLng,liLat,text,liAddress){
+    addInfoWindow(liLng,liLat,text,liAddress);
+}
+//
+var infoWindowMarker = new BMap.Marker(mPoint);
+// 添加信息窗口实例
+function addInfoWindow(liLng,liLat,text,liAddress){
+    var opts = {
+    	width : 350,     // 信息窗口宽度
+    	height: 160,     // 信息窗口高度
+    	title : text , // 信息窗口标题
+    	enableMessage: true//设置允许信息窗发送短息
+    };
+    clearMapAgainMarker();          // 清空地图,重新打上中心自定义标记
+    infoWindowMarker = new BMap.Marker(new BMap.Point(liLng,liLat));     // 创建视窗标注
+	var infoContent = liAddress;     // 地址内容
+	map.addOverlay(infoWindowMarker);      // 将标注添加到地图中
+    infoWindowMarker.setAnimation(BMAP_ANIMATION_BOUNCE);     // 设置自定义标注 跳动
+	addClickHandler(infoContent,infoWindowMarker);
+    function addClickHandler(content,marker){
+    	infoWindowMarker.addEventListener("click",function(e){
+    		openInfo(content,e)
+            function openInfo(content,e){
+            	var p = e.target;
+            	var point = new BMap.Point(p.getPosition().lng, p.getPosition().lat);
+            	var infoWindow = new BMap.InfoWindow(content,opts);  // 创建信息窗口对象
+            	map.openInfoWindow(infoWindow,point); //开启信息窗口
+            }
+        });
+    }
+    return infoWindowMarker;
+    console.log(opts);
 }
