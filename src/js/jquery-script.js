@@ -1,3 +1,5 @@
+
+
 $(document).ready(function(){
     $("#search-housing").click(function(){
         $.ajax({
