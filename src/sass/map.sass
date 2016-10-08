@@ -8,7 +8,6 @@
 // 控制右上角移位控件
 .anchorTR
     margin-top: 2.5rem!important
-
 /*  自定义控件 样式  */
 #ulList
     position: absolute
@@ -42,7 +41,6 @@
 .BMap_bubble_content
     margin-top: 1rem
     color: #9a9a9a
-
 // ulList新加样式
 $list: (traffic,snack,restaurant,bank,hotel)
 @for $i from 0 to length($list)
@@ -51,6 +49,9 @@ $list: (traffic,snack,restaurant,bank,hotel)
             color: #fff
     a#OutputList-#{nth($list, $i+1)}
         cursor: pointer
+        &:hover
+            background-color: #000
+            color: #FFF
     ul#List-#{nth($list, $i+1)}
         padding: 10px 0 10px 48px
         li

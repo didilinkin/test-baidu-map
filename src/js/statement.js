@@ -90,23 +90,21 @@ function addInfoWindow(liLng,liLat,text,liAddress){
     	width : 350,     // 信息窗口宽度
     	height: 160,     // 信息窗口高度
     	title : text , // 信息窗口标题
-    	enableMessage: true//设置允许信息窗发送短息
+        offset: new BMap.Size(0,-10),      // 信息窗口偏移
+    	enableMessage: true,   //设置允许信息窗发送短息S
     };
-    infoWindowMarker = new BMap.Marker(new BMap.Point(liLng,liLat));     // 创建视窗标注
 	var infoContent = liAddress;     // 地址内容
+    // 信息自定义标识
+    var infoIcon = new BMap.Icon("./images/pt.png", new BMap.Size(80,80));    // 自定义标注样式
+    var infoWindowMarker = new BMap.Marker(new BMap.Point(liLng,liLat),{icon:infoIcon});  // 创建信息自定义标识(将样式加入)
 	map.addOverlay(infoWindowMarker);      // 将标注添加到地图中
-	addClickHandler(infoContent,infoWindowMarker);
-    function addClickHandler(content,marker){
-    	infoWindowMarker.addEventListener("click",function(e){
-    		openInfo(content,e)
-            function openInfo(content,e){
-            	var p = e.target;
-            	var point = new BMap.Point(p.getPosition().lng, p.getPosition().lat);
-            	var infoWindow = new BMap.InfoWindow(content,opts);  // 创建信息窗口对象
-            	map.openInfoWindow(infoWindow,point); //开启信息窗口
-            }
-        });
-    }
+    // 去除不需要的函数嵌套后
+	infoWindowMarker.addEventListener("click",function(e){
+        var p = e.target;
+        var point = new BMap.Point(p.getPosition().lng, p.getPosition().lat);
+        var infoWindow = new BMap.InfoWindow(infoContent,opts);  // 创建信息窗口对象
+        map.openInfoWindow(infoWindow,point); //开启信息窗口
+    });
     return infoWindowMarker;
 }
 // list列表Btn名称
@@ -140,30 +138,11 @@ function controlLiOnclick(controlSearchLiId,index){
 	}
 }
 // 周边按钮点击
-function BtnSearchTraffic() {
-    controlLiOnclick(controlLiId[1],1);
+function searchNearBy(i) {
+    controlLiOnclick(controlLiId[i], i);
     btnClearClass();
-    listBtn[0].attr("class","active");
-}
-function BtnSearchSnack() {
-    controlLiOnclick(controlLiId[2],2);
-    btnClearClass();
-    listBtn[1].attr("class","active");
-}
-function BtnSearchRestaurant() {
-    controlLiOnclick(controlLiId[3],3);
-    btnClearClass();
-    listBtn[2].attr("class","active");
-}
-function BtnSearchBank() {
-    controlLiOnclick(controlLiId[4],4);
-    btnClearClass();
-    listBtn[3].attr("class","active");
-}
-function BtnSearchHotel() {
-    controlLiOnclick(controlLiId[5],5);
-    btnClearClass();
-    listBtn[4].attr("class","active");
+    listBtn[i-1].attr("class","active");
+	$("#ulList li:eq(" + i + ")").addClass("active").siblings().removeClass("active");
 }
 // 清理list列表class样式
 function btnClearClass(){

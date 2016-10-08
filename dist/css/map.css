@@ -48,6 +48,9 @@ a#search-traffic:hover {
 
 a#OutputList-traffic {
   cursor: pointer; }
+  a#OutputList-traffic:hover {
+    background-color: #000;
+    color: #FFF; }
 
 ul#List-traffic {
   padding: 10px 0 10px 48px; }
@@ -61,6 +64,9 @@ a#search-snack:hover {
 
 a#OutputList-snack {
   cursor: pointer; }
+  a#OutputList-snack:hover {
+    background-color: #000;
+    color: #FFF; }
 
 ul#List-snack {
   padding: 10px 0 10px 48px; }
@@ -74,6 +80,9 @@ a#search-restaurant:hover {
 
 a#OutputList-restaurant {
   cursor: pointer; }
+  a#OutputList-restaurant:hover {
+    background-color: #000;
+    color: #FFF; }
 
 ul#List-restaurant {
   padding: 10px 0 10px 48px; }
@@ -87,6 +96,9 @@ a#search-bank:hover {
 
 a#OutputList-bank {
   cursor: pointer; }
+  a#OutputList-bank:hover {
+    background-color: #000;
+    color: #FFF; }
 
 ul#List-bank {
   padding: 10px 0 10px 48px; }
@@ -100,6 +112,9 @@ a#search-hotel:hover {
 
 a#OutputList-hotel {
   cursor: pointer; }
+  a#OutputList-hotel:hover {
+    background-color: #000;
+    color: #FFF; }
 
 ul#List-hotel {
   padding: 10px 0 10px 48px; }
