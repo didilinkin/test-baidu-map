@@ -1,28 +1,6 @@
 /*
  *声明——具体是怎样做的(具体实现)
  */
-var Btntraffic = document.getElementById("OutputList-traffic"),
-    Btnsnack = document.getElementById("OutputList-snack"),
-    Btnrestaurant = document.getElementById("OutputList-restaurant"),
-    Btnbank = document.getElementById("OutputList-bank"),
-    Btnhotel = document.getElementById("OutputList-hotel");
-var infoWindowMarker = new BMap.Marker(mPoint);
-var oneMarker = new BMap.Marker(mPoint);
-var listBtn = [Btntraffic,Btnsnack,Btnrestaurant,Btnbank,Btnhotel]      // list列表Btn名称
-// 圆形检索填充
-var circle = new BMap.Circle(mPoint,1000,{
-    fillColor:"#FF2725",						// 填充色
-    strokeWeight: 2,							// 画笔宽度
-    strokeColor: "#FF2725",
-    fillOpacity: 0.07, 							// 填充透明度
-    strokeOpacity: 1							// 画笔透明度
-});
-var local =  new BMap.LocalSearch(map, {
-    renderOptions: {
-        map: map,
-        autoViewport: false
-    }
-});
 // 页面打开时执行的任务,输出list列表内容
 function reloadList() {
     var allListId = [
@@ -55,8 +33,9 @@ function reloadList() {
                         var liLat = results.getPoi(i).point.lat;
                         var liAddress = results.getPoi(i).address;  // 添加地址内容
                         li.setAttribute("data-title",text);
-                        li.setAttribute("onmouseover","liOnmouseover(" + liLng + "," + liLat + ")");
+                        // li.setAttribute("onmouseenter","liOnmouseenter(" + liLng + "," + liLat + ")");
                         li.setAttribute("onclick","liOnclick("+liLng+","+liLat+","+"\""+text+"\""+","+"\""+liAddress+"\""+")");
+						// li.setAttribute("onmouseleave","liOnmouseleave()");
                         li.appendChild(textnode);
                         listUl.appendChild(li);
     				}
@@ -64,7 +43,7 @@ function reloadList() {
                     var num = results.getCurrentNumPois();   // getNumPois()全部结果数量
                     var numnode = document.createTextNode(num);
                     PNum.appendChild(numnode);
-                    listUl.setAttribute("onmouseout","liOnmouseout()");     // listUl添加鼠标移出事件
+                    //listUl.setAttribute("onmouseout","liOnmouseout()");     // listUl添加鼠标移出事件
     			}
             }
         };
@@ -89,11 +68,11 @@ function addMarker(PointLng,PointLat) {
 	map.addOverlay(oneMarker);         // 将标注添加到地图中
 }
 // list列表li 鼠标经过事件
-function liOnmouseover(liLng,liLat){
+function liOnmouseenter(liLng,liLat){
     addMarker(liLng,liLat);     // 将坐标值输入 单独标记
 }
 // list列表ul 鼠标移出事件
-function liOnmouseout(){
+function liOnmouseleave(){
     clearMapAgainMarker();          // 清空地图,重新打上中心自定义标记
     customMarker.setAnimation(BMAP_ANIMATION_BOUNCE);     // 设置自定义标注 跳动
     if (infoWindowMarker.point != mPoint) {
@@ -130,20 +109,19 @@ function addInfoWindow(liLng,liLat,text,liAddress){
     }
     return infoWindowMarker;
 }
+// list列表Btn名称
+var listBtn = [$("#OutputList-traffic"),$("#OutputList-snack"),$("#OutputList-restaurant"),$("#OutputList-bank"),$("#OutputList-hotel")];
 // 控件点击搜索事件（参数:检索词）
 function controlLiOnclick(controlSearchLiId,index){
-    // 如果 参数不等于 "周边房源"
-    if (controlSearchLiId != controlLiId[0]) {
-        clearMapAgainMarker();      // 清空地图,恢复默认调用
+	clearMapAgainMarker();  // 清空地图,恢复默认调用
+	map.addOverlay(circle); // 添加范围圆圈
+    // 如果非"周边房源"
+    if (index != 0) {
         var options = {
     		onSearchComplete: function(results){
     			// 判断状态是否正确
     			if (local.getStatus() == BMAP_STATUS_SUCCESS){
-                    var controlLength = 25;        // 设置最大检索结果值为25
-                    if ( results.getNumPois() < 25) {
-                        controlLength = results.getNumPois();
-                    }
-    				for (var i = 0; i < controlLength; i ++){
+    				for (var i = 0; i < results.getCurrentNumPois(); i ++){
     					var resultPointText = results.getPoi(i).title;        // 将检索到的点位属性保存
                         var resultPointAddress = results.getPoi(i).address;
                         var resultPointLng = results.getPoi(i).point.lng;
@@ -154,42 +132,46 @@ function controlLiOnclick(controlSearchLiId,index){
     		}
     	};
     	var local = new BMap.LocalSearch(mPoint, options);
-        local.searchNearby(controlSearchLiId, mPoint,1000);    // 检索词
-        map.addOverlay(circle);
+        local.searchNearby(controlSearchLiId, mPoint, 1000);    // 检索词
         btnClearClass();
-        listBtn[index-1].setAttribute("class","active");        // list列表名称
-    }
+        listBtn[index-1].attr("class","active");        // list列表名称
+    }else{
+		loadAmbientBuildingPoint();
+	}
 }
-Btntraffic.onclick = function(){
-    controlLiOnclick(controlLiId[1]);
+// 周边按钮点击
+function BtnSearchTraffic() {
+    controlLiOnclick(controlLiId[1],1);
     btnClearClass();
-    listBtn[0].setAttribute("class","active");};
-Btnsnack.onclick = function(){
-    controlLiOnclick(controlLiId[2]);
+    listBtn[0].attr("class","active");
+}
+function BtnSearchSnack() {
+    controlLiOnclick(controlLiId[2],2);
     btnClearClass();
-    listBtn[1].setAttribute("class","active");};
-Btnrestaurant.onclick = function(){
-    controlLiOnclick(controlLiId[3]);
+    listBtn[1].attr("class","active");
+}
+function BtnSearchRestaurant() {
+    controlLiOnclick(controlLiId[3],3);
     btnClearClass();
-    listBtn[2].setAttribute("class","active");
-};
-// Btnbank.onclick = function(){
-//
-// };
+    listBtn[2].attr("class","active");
+}
 function BtnSearchBank() {
-    controlLiOnclick(controlLiId[4],0);
-    // btnClearClass();
-    var Btnbank = document.getElementById("OutputList-bank");
-    // Btnbank.setAttribute("class","active");
-    console.log(Btnbank);
-}
-Btnhotel.onclick = function(){
-    controlLiOnclick(controlLiId[5]);
+    controlLiOnclick(controlLiId[4],4);
     btnClearClass();
-    listBtn[4].setAttribute("class","active");};
+    listBtn[3].attr("class","active");
+}
+function BtnSearchHotel() {
+    controlLiOnclick(controlLiId[5],5);
+    btnClearClass();
+    listBtn[4].attr("class","active");
+}
 // 清理list列表class样式
 function btnClearClass(){
     for (var i = 0; i < listBtn.length; i++) {
-        listBtn[i].setAttribute("class","");
+        listBtn[i].removeClass();
     }
+}
+// 加载周边房源
+function loadAmbientBuildingPoint() {
+	alert(1111)
 }

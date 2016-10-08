@@ -26,7 +26,7 @@ ulListControl.prototype.initialize = function(map){
     ul.id="ulList";
     var li = null;      // 创建一个节点
     var aText = ["周边房源", "交通","快餐","餐厅","银行","酒店"];     // 将li内容创建为数组
-    var aIdName = ["housing", "traffic","snack","restaurant","bank","hotel"];
+    var aIdName = ["housing", "traffic", "snack", "restaurant", "bank","hotel"];
     // 循环li标签
     for (var i=0; i < controlLiId.length; i++){
         li = document.createElement("li");
@@ -43,9 +43,21 @@ ulListControl.prototype.initialize = function(map){
 }
 var myUlListControl = new ulListControl();
 map.addControl(myUlListControl);    // 将控件重新添加到地图中
-//两秒后开启拖拽
+// 两秒后开启拖拽
 setTimeout(function(){
     map.enableDragging();
 }, 3500);
-reloadList();       // 输出list列表内容
-defaultCallLoad();      // 将自定义标注、自定义控件添加到地图中
+// 圆形检索填充
+var circle = new BMap.Circle(mPoint,1000,{
+    fillColor:"#FF2725",						// 填充色
+    strokeWeight: 2,							// 画笔宽度
+    strokeColor: "#FF2725",
+    fillOpacity: 0.07, 							// 填充透明度
+    strokeOpacity: 1							// 画笔透明度
+});
+var infoWindowMarker = new BMap.Marker(mPoint);
+var oneMarker = new BMap.Marker(mPoint);
+// 输出list列表内容
+reloadList();
+// 将自定义标注、自定义控件添加到地图中
+defaultCallLoad();
