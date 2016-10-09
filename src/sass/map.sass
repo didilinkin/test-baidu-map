@@ -28,6 +28,10 @@
         border-radius: 15px
         background-color: #FFF
         cursor: pointer
+        .active
+            background-color: #333
+            a
+                color: #FFF
     li:hover
         background-color: #333
         a
@@ -58,3 +62,7 @@ $list: (traffic,snack,restaurant,bank,hotel)
             cursor: pointer
             &:hover
                 color: #3A3F44
+/*  在地图上显示 */
+.house .inner .sec07>ul>li a:hover
+    background-color: #333
+    color: #FFF

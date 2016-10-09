@@ -29,6 +29,10 @@
     border-radius: 15px;
     background-color: #FFF;
     cursor: pointer; }
+    #ulList li .active {
+      background-color: #333; }
+      #ulList li .active a {
+        color: #FFF; }
   #ulList li:hover {
     background-color: #333; }
     #ulList li:hover a {
@@ -122,3 +126,8 @@ ul#List-hotel {
     cursor: pointer; }
     ul#List-hotel li:hover {
       color: #3A3F44; }
+
+/*  在地图上显示 */
+.house .inner .sec07 > ul > li a:hover {
+  background-color: #333;
+  color: #FFF; }

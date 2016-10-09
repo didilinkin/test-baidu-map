@@ -6,10 +6,10 @@ function reloadList() {
     var allListId = [
         // 检索标题,列表ulID位置,列表pID输出位置
         {title: "公交",ulId: "List-traffic",pId: "Num-traffic"},
-        {title: "快餐店",ulId: "List-snack",pId: "Num-snack"},
+        {title: "快餐",ulId: "List-snack",pId: "Num-snack"},
         {title: "餐厅",ulId: "List-restaurant",pId: "Num-restaurant"},
         {title: "银行",ulId: "List-bank",pId: "Num-bank"},
-        {title: "大酒店",ulId: "List-hotel",pId: "Num-hotel"}
+        {title: "酒店",ulId: "List-hotel",pId: "Num-hotel"}
     ];
     for (var i = 0; i < 5; i++) {
         // 输出list内容(只输出 不打点)
@@ -113,6 +113,7 @@ var listBtn = [$("#OutputList-traffic"),$("#OutputList-snack"),$("#OutputList-re
 function controlLiOnclick(controlSearchLiId,index){
 	clearMapAgainMarker();  // 清空地图,恢复默认调用
 	map.addOverlay(circle); // 添加范围圆圈
+    $("#ulList li:eq(" + index + ")").addClass("active").siblings().removeClass("active");
     // 如果非"周边房源"
     if (index != 0) {
         var options = {

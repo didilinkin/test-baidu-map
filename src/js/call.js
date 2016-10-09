@@ -6,7 +6,7 @@ var mPoint = new BMap.Point(120.384459,36.071709);    // 标点位置(华润大�
 var myIcon = new BMap.Icon("./images/map-select-postion.png", new BMap.Size(65,80));    // 自定义标注样式
 var customMarker = new BMap.Marker(mPoint,{icon:myIcon});  // 创建自定义标注(将样式加入)
     customMarker.setAnimation(BMAP_ANIMATION_BOUNCE);     // 设置自定义标注 跳动
-map.centerAndZoom(mPoint,16);   // 创建地图中心点,层级15级（并不显示标记）
+map.centerAndZoom(mPoint,15);   // 创建地图中心点,层级15级（并不显示标记）
 map.disableDragging();  //禁止拖拽
 // 添加 缩放 与 平移控件
 map.addControl(new BMap.NavigationControl({
@@ -14,7 +14,7 @@ map.addControl(new BMap.NavigationControl({
     type: BMAP_NAVIGATION_CONTROL_SMALL
 }));
 // 自定义控件(右上角 筛选)
-var controlLiId = ["周边房源","公交","快餐店","餐厅","银行","大酒店"];      // 检索关键词
+var controlLiId = ["周边房源","公交","快餐","餐厅","银行","酒店"];      // 检索关键词
 function ulListControl(){
  this.defaultAnchor = BMAP_ANCHOR_TOP_LEFT;      // 默认停靠位置和偏移量
  this.defaultOffset = new BMap.Size(10, 10);
